@@ -150,7 +150,7 @@ $$\text{[Micrófonos]} \longrightarrow \text{[Biamp Nexia CS]} \longrightarrow \
 * **Bloqueo / Desbloqueo del Panel Frontal:**
   * Mantener presionados simultáneamente los botones `Prev / Up` + `Next / Down` durante 3 segundos.
 * **Restauración a `DSP OFF` manual:**
-  * Presionar `Sel/Enter` (destella PRESET) $\rightarrow$ presionar `Sel/Enter` $\rightarrow$ navegar con flechas hasta `DSP OFF` $\rightarrow$ confirmar con `Sel/Enter`.
+  * Presionar `Sel/Enter` (destella PRESET) → presionar `Sel/Enter` → navegar con flechas hasta `DSP OFF` → confirmar con `Sel/Enter`.
 
 ---
 
