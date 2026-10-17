@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guía Técnica de Audio | Parroquia San Patricio de Las Condes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         @media print {
             .no-print {
@@ -13,654 +28,740 @@
             }
 
             body {
-                background-color: white !important;
-                color: black !important;
+                background-color: #ffffff !important;
+                color: #0f172a !important;
+                font-size: 11pt;
+            }
+
+            .print-card {
+                background-color: #ffffff !important;
+                border: 1px solid #cbd5e1 !important;
+                color: #0f172a !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
             }
 
             .print-break {
-                page-break-inside: avoid;
+                page-break-before: always;
+            }
+
+            a {
+                text-decoration: underline !important;
+                color: #1d4ed8 !important;
             }
         }
     </style>
 </head>
 
-<body class="bg-slate-950 text-slate-100 font-sans leading-relaxed selection:bg-blue-600 selection:text-white">
+<body class="bg-slate-950 text-slate-100 font-sans leading-relaxed selection:bg-blue-600 selection:text-white min-h-screen">
 
-    <!-- Barra de Navegación -->
-    <header class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur border-b border-slate-800">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-4">
+    <!-- Barra de Navegación Sticky -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-3 h-8 bg-blue-500 rounded-full"></div>
+                <div class="w-2.5 h-9 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-full shadow-lg shadow-blue-500/30"></div>
                 <div>
-                    <h1 class="text-lg md:text-xl font-bold tracking-tight text-white">Sistema de Amplificación y Audio
+                    <h1 class="text-base sm:text-lg font-bold tracking-tight text-white flex items-center gap-2">
+                        Sistema de Audio y Refuerzo Sonoro
+                        <span class="hidden sm:inline-block px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full">Oficial</span>
                     </h1>
-                    <p class="text-xs text-slate-400">Templo Parroquial San Patricio de Las Condes • Integrador: Novotic
+                    <p class="text-xs text-slate-400">
+                        Templo Parroquial San Patricio de Las Condes • Integrador: <span class="text-slate-200 font-medium">Novotic</span> (<a href="https://www.novotic.cl" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 underline decoration-slate-600">www.novotic.cl</a> • Tel: 02-22113310)
                     </p>
                 </div>
             </div>
-            <nav class="no-print flex flex-wrap gap-2 text-xs md:text-sm font-medium">
-                <a href="#inventario"
-                    class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">1.
-                    Equipos</a>
-                <a href="#mapeo"
-                    class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">2. Mapa y
-                    Zonas</a>
-                <a href="#software"
-                    class="px-3 py-1.5 rounded-lg bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600/30 text-blue-300 transition">3.
-                    Conexión Software</a>
-                <a href="#operacion"
-                    class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">4.
-                    Operación</a>
-                <a href="#descargas"
-                    class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">5. Manuales
-                    y Links</a>
-                <button onclick="window.print()"
-                    class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition">Imprimir
-                    / PDF</button>
+            <nav class="no-print flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs font-medium">
+                <a href="#inventario" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">1. Equipos</a>
+                <a href="#mapeo" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">2. Mapeo</a>
+                <a href="#fotos" class="px-2.5 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 hover:bg-amber-500/20 transition">3. Galería</a>
+                <a href="#ganancia" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">4. Ganancia</a>
+                <a href="#software" class="px-2.5 py-1.5 rounded-lg bg-blue-600/20 border border-blue-500/40 hover:bg-blue-600/30 text-blue-300 transition">5. Software</a>
+                <a href="#operacion" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">6. Operación</a>
+                <a href="#descargas" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">7. Enlaces</a>
+                <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-md shadow-emerald-700/30 transition flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                    Imprimir / PDF
+                </button>
             </nav>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-8 space-y-12">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-14">
+
+        <!-- RESUMEN EJECUTIVO & BANNER -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-950/60 via-slate-900 to-indigo-950/60 border border-blue-900/40 p-6 sm:p-8 shadow-2xl">
+            <div class="relative z-10 max-w-3xl space-y-3">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold uppercase tracking-wider bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                    Levantamiento de Ingeniería Acústica • Parroquia San Patricio
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                    Documentación Técnica y Operacional del Templo
+                </h2>
+                <p class="text-sm sm:text-base text-slate-300">
+                    Sistema integral compuesto por una matriz procesadora digital <strong class="text-white">Biamp Nexia CS</strong> que realiza mezcla automática, filtros contra acoples (feedback) y alineamiento de retardo por zonas, junto con dos etapas de potencia profesional <strong class="text-white">Crown XTi 1002</strong> calibradas en <code class="text-cyan-300 font-mono">DSP OFF</code> para alimentar los altavoces de columna instalados en los pilares y los retornos del presbiterio.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2 text-xs text-slate-400">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        <span>4 Canales Mapeados (A1, A2, B1, B2)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+                        <span>DSP Centralizado con respaldo en red</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                        <span>Fotografías de terreno y esquemas arquitectónicos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- SECCIÓN 1: INVENTARIO DE EQUIPOS -->
-        <section id="inventario" class="space-y-6 print-break">
-            <div class="border-b border-slate-800 pb-2">
-                <h2 class="text-2xl font-bold text-white">1. Inventario de Equipos en el Rack</h2>
-                <p class="text-sm text-slate-400">Ordenados de arriba hacia abajo según su disposición física en el
-                    gabinete.</p>
+        <section id="inventario" class="space-y-6 print-card">
+            <div class="border-b border-slate-800 pb-3 flex flex-wrap justify-between items-end gap-2">
+                <div>
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2.5">
+                        <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-sm font-bold border border-blue-500/30">1</span>
+                        Inventario de Equipos en el Rack
+                    </h2>
+                    <p class="text-sm text-slate-400">Disposición física de arriba hacia abajo dentro del gabinete técnico.</p>
+                </div>
+                <span class="text-xs font-mono text-slate-500">Rack 19" Estándar</span>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6">
+            <div class="grid lg:grid-cols-3 gap-6">
                 <!-- Equipo 1: Biamp -->
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col justify-between">
+                <div class="bg-slate-900 border border-slate-800 hover:border-indigo-500/50 transition-all rounded-xl p-5 flex flex-col justify-between shadow-lg">
                     <div>
                         <div class="flex justify-between items-start mb-3">
-                            <span
-                                class="px-2.5 py-1 text-xs font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 rounded">Unidad
-                                Superior (DSP)</span>
+                            <span class="px-2.5 py-1 text-xs font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 rounded">
+                                Unidad Superior (DSP)
+                            </span>
                             <span class="flex items-center gap-1.5 text-xs text-emerald-400 font-medium">
-                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> I/O • COM •
-                                STATUS
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                I/O • COM • STATUS
                             </span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Biamp Nexia CS</h3>
-                        <p class="text-sm text-slate-300 mb-4">Procesador digital de señales (DSP) de conferencia y
-                            matriz de audio. Es el "cerebro" acústico del templo.</p>
+                        <h3 class="text-xl font-bold text-white mb-1">Biamp Nexia CS</h3>
+                        <p class="text-xs text-indigo-400 font-mono mb-3">Matriz y Procesador Digital (10x6)</p>
+                        <p class="text-xs text-slate-300 mb-4">
+                            Es el "cerebro" acústico del templo. Recibe los micrófonos del altar, ambón y sede; aplica supresores automáticos de feedback, compresión, EQ paramétrica y desfases temporales (delay) entre la parte delantera y trasera de la nave.
+                        </p>
                         <ul class="text-xs text-slate-400 space-y-2 border-t border-slate-800 pt-3">
-                            <li><strong class="text-slate-200">Entradas / Salidas:</strong> 10 entradas mic/línea
-                                balanceadas y 6 salidas balanceadas (conectores Euroblock).</li>
-                            <li><strong class="text-slate-200">Función en el templo:</strong> Mezcla los micrófonos del
-                                altar/ambón, aplica filtros anti-acople (feedback), ecualización paramétrica, compresión
-                                y retraso (delay) por zonas antes de enviar la señal a los amplificadores.</li>
-                            <li><strong class="text-slate-200">Conexión de control:</strong> Puerto Ethernet RJ-45 (Red
-                                TCP/IP) y puerto serial RS-232.</li>
+                            <li><strong class="text-slate-200">Capacidad:</strong> 10 entradas mic/línea balanceadas y 6 salidas balanceadas (bloques Euroblock).</li>
+                            <li><strong class="text-slate-200">Indicadores frontales:</strong> 3 LEDs verdes fijos (<code class="text-emerald-400">I/O</code>, <code class="text-emerald-400">com</code>, <code class="text-emerald-400">status</code>).</li>
+                            <li><strong class="text-slate-200">Gestión de Control:</strong> Puerto Ethernet RJ-45 (TCP/IP UDP) y puerto serial RS-232.</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Equipo 2: Crown A -->
-                <div class="bg-slate-900 border border-blue-900/50 rounded-xl p-5 flex flex-col justify-between">
+                <div class="bg-slate-900 border border-blue-900/50 hover:border-blue-500/50 transition-all rounded-xl p-5 flex flex-col justify-between shadow-lg">
                     <div>
                         <div class="flex justify-between items-start mb-3">
-                            <span
-                                class="px-2.5 py-1 text-xs font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded">Amplificador
-                                "A" (Central)</span>
-                            <span
-                                class="px-2 py-0.5 text-xs font-mono bg-cyan-950 text-cyan-300 border border-cyan-700 rounded">DSP
-                                OFF</span>
+                            <span class="px-2.5 py-1 text-xs font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded">
+                                Amplificador "A" (Central)
+                            </span>
+                            <span class="px-2 py-0.5 text-xs font-mono bg-cyan-950 text-cyan-300 border border-cyan-700 rounded font-bold">
+                                DSP OFF
+                            </span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Crown XTi 1002 (Unidad 1)</h3>
-                        <p class="text-sm text-slate-300 mb-4">Amplificador de potencia profesional de 2 canales.
-                            Dedicado a los parlantes principales hacia la asamblea (Nave Central).</p>
+                        <h3 class="text-xl font-bold text-white mb-1">Crown XTi 1002 (Unidad 1)</h3>
+                        <p class="text-xs text-blue-400 font-mono mb-3">Nave Central (Público / Asamblea)</p>
+                        <p class="text-xs text-slate-300 mb-4">
+                            Amplificador de potencia profesional de 2 canales clase D conmutada. Diseñado para sonorizar la asamblea con máxima nitidez vocal.
+                        </p>
                         <ul class="text-xs text-slate-400 space-y-2 border-t border-slate-800 pt-3">
-                            <li><strong class="text-slate-200">Potencia Estéreo:</strong> 275W a 8Ω | 500W a 4Ω | 700W a
-                                2Ω por canal.</li>
-                            <li><strong class="text-slate-200">Canal A1 (Izquierda):</strong> Parlantes delanteros hacia
-                                el público.</li>
-                            <li><strong class="text-slate-200">Canal A2 (Derecha):</strong> Parlantes centrales/traseros
-                                hacia el público.</li>
-                            <li><strong class="text-slate-200">Modo actual:</strong> <code
-                                    class="text-cyan-300">DSP OFF</code> (etapa de potencia pura; el procesamiento
-                                proviene del Biamp).</li>
+                            <li><strong class="text-slate-200">Potencia Estéreo:</strong> 275W @ 8Ω | 500W @ 4Ω | 700W @ 2Ω por canal.</li>
+                            <li><strong class="text-slate-200">Canal A1 (Perilla Izquierda):</strong> Parlantes pilares delanteros hacia las bancas.</li>
+                            <li><strong class="text-slate-200">Canal A2 (Perilla Derecha):</strong> Parlantes pilares centrales hacia bancas traseras.</li>
+                            <li><strong class="text-slate-200">Configuración:</strong> <code class="text-cyan-300 font-semibold">DSP OFF</code> (etapa pura; crossover y EQ provienen del Biamp).</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Equipo 3: Crown B -->
-                <div class="bg-slate-900 border border-rose-900/50 rounded-xl p-5 flex flex-col justify-between">
+                <div class="bg-slate-900 border border-rose-900/50 hover:border-rose-500/50 transition-all rounded-xl p-5 flex flex-col justify-between shadow-lg">
                     <div>
                         <div class="flex justify-between items-start mb-3">
-                            <span
-                                class="px-2.5 py-1 text-xs font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30 rounded">Amplificador
-                                "B" (Inferior)</span>
-                            <span
-                                class="px-2 py-0.5 text-xs font-mono bg-cyan-950 text-cyan-300 border border-cyan-700 rounded">DSP
-                                OFF</span>
+                            <span class="px-2.5 py-1 text-xs font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30 rounded">
+                                Amplificador "B" (Inferior)
+                            </span>
+                            <span class="px-2 py-0.5 text-xs font-mono bg-cyan-950 text-cyan-300 border border-cyan-700 rounded font-bold">
+                                DSP OFF
+                            </span>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Crown XTi 1002 (Unidad 2)</h3>
-                        <p class="text-sm text-slate-300 mb-4">Amplificador de potencia profesional de 2 canales.
-                            Dedicado al sistema de monitoreo/retorno para el altar y zonas auxiliares.</p>
+                        <h3 class="text-xl font-bold text-white mb-1">Crown XTi 1002 (Unidad 2)</h3>
+                        <p class="text-xs text-rose-400 font-mono mb-3">Retornos Presbiterio y Línea Coro</p>
+                        <p class="text-xs text-slate-300 mb-4">
+                            Alimenta los altavoces de monitoreo orientados hacia los celebrantes en el presbiterio y la línea prevista hacia el coro.
+                        </p>
                         <ul class="text-xs text-slate-400 space-y-2 border-t border-slate-800 pt-3">
-                            <li><strong class="text-slate-200">Potencia Estéreo:</strong> 275W a 8Ω | 500W a 4Ω | 700W a
-                                2Ω por canal.</li>
-                            <li><strong class="text-slate-200">Canal B1 (Izquierda):</strong> Parlantes de retorno
-                                apuntando hacia el Altar (ubicados detrás de A1).</li>
-                            <li><strong class="text-slate-200">Canal B2 (Derecha):</strong> Sin salida acústica actual
-                                (posible línea de retorno hacia el altillo del coro en la entrada).</li>
-                            <li><strong class="text-slate-200">Modo actual:</strong> <code
-                                    class="text-cyan-300">DSP OFF</code>.</li>
+                            <li><strong class="text-slate-200">Potencia Estéreo:</strong> 275W @ 8Ω | 500W @ 4Ω | 700W @ 2Ω por canal.</li>
+                            <li><strong class="text-slate-200">Canal B1 (Perilla Izquierda):</strong> Retorno Altar (ubicado detrás de A1 apuntando al presbiterio).</li>
+                            <li><strong class="text-slate-200">Canal B2 (Perilla Derecha):</strong> Línea hacia altillo del coro (actualmente sin emisión).</li>
+                            <li><strong class="text-slate-200">Configuración:</strong> <code class="text-cyan-300 font-semibold">DSP OFF</code>.</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 2: DIAGRAMA VECTORIAL Y TABLA DE MAPEO -->
+        <!-- SECCIÓN 2: DIAGRAMAS ARQUITECTÓNICOS Y MAPEO -->
         <section id="mapeo" class="space-y-6 print-break">
-            <div class="border-b border-slate-800 pb-2">
-                <h2 class="text-2xl font-bold text-white">2. Diagrama de Mapeo y Distribución del Templo</h2>
-                <p class="text-sm text-slate-400">Esquema de conexión entre los canales del rack y la ubicación física
-                    de los parlantes en la nave central.</p>
+            <div class="border-b border-slate-800 pb-3 flex flex-wrap justify-between items-end gap-2">
+                <div>
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2.5">
+                        <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-sm font-bold border border-blue-500/30">2</span>
+                        Diagrama de Mapeo y Distribución del Templo
+                    </h2>
+                    <p class="text-sm text-slate-400">Esquema integral de conexionado entre el rack y la planta arquitectónica de la nave.</p>
+                </div>
+                <!-- Selector de vista interactivo -->
+                <div class="no-print inline-flex rounded-lg bg-slate-900 border border-slate-800 p-1 text-xs">
+                    <button id="btn-view-graphic" onclick="switchMapView('graphic')" class="px-3 py-1.5 rounded-md font-semibold bg-blue-600 text-white shadow transition">
+                        Diagrama Oficial HD
+                    </button>
+                    <button id="btn-view-vector" onclick="switchMapView('vector')" class="px-3 py-1.5 rounded-md font-semibold text-slate-400 hover:text-white transition">
+                        Esquema Vectorial SVG
+                    </button>
+                </div>
             </div>
 
-            <!-- Diagrama SVG Integrado -->
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 md:p-6 overflow-x-auto">
+            <!-- VISTA 1: DIAGRAMA OFICIAL EN ALTA RESOLUCIÓN -->
+            <div id="container-map-graphic" class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-2xl space-y-4">
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-slate-800/80">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                        <span class="text-xs font-bold text-slate-200 uppercase tracking-wider">Infografía Oficial de Conexionado (Rack $\rightarrow$ Templo)</span>
+                    </div>
+                    <button onclick="openImageModal('./Diagrama%20Audio%20Rack%20Templo.jpg', 'Diagrama Arquitectónico Oficial: Rack de Audio y Nave Central')" class="no-print text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                        Ampliar en Pantalla Completa
+                    </button>
+                </div>
+                <div class="relative rounded-xl overflow-hidden bg-slate-950 border border-slate-800 group">
+                    <img src="./Diagrama%20Audio%20Rack%20Templo.jpg" alt="Diagrama de Audio Rack y Nave Central Templo San Patricio" class="w-full h-auto object-contain max-h-[700px] mx-auto cursor-pointer transition duration-300 group-hover:scale-[1.01]" onclick="openImageModal(this.src, 'Diagrama Oficial del Sistema de Audio')">
+                    <div class="absolute bottom-3 right-3 bg-slate-900/90 backdrop-blur px-3 py-1.5 rounded-lg border border-slate-700 text-xs text-slate-300 pointer-events-none">
+                        Haz clic para ampliar imagen
+                    </div>
+                </div>
+            </div>
+
+            <!-- VISTA 2: ESQUEMA VECTORIAL SVG (OCULTO POR DEFECTO SALVO TOGGLE) -->
+            <div id="container-map-vector" class="hidden bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 overflow-x-auto shadow-2xl">
                 <svg viewBox="0 0 950 520" class="w-full h-auto min-w-[720px]" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Fondo general -->
                     <rect width="950" height="520" rx="12" fill="#0f172a" />
-
-                    <!-- ================= RACK DE AUDIO (IZQUIERDA) ================= -->
-                    <text x="175" y="38" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">RACK DE AUDIO</text>
-                    <rect x="35" y="50" width="280" height="410" rx="6" fill="#1e293b" stroke="#475569"
-                        stroke-width="3" />
-
-                    <!-- Biamp Nexia CS -->
-                    <rect x="50" y="70" width="250" height="70" rx="4" fill="#090d16" stroke="#6366f1"
-                        stroke-width="1.5" />
-                    <text x="175" y="100" fill="#e2e8f0" font-size="15" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">Biamp Nexia CS</text>
-                    <text x="175" y="120" fill="#818cf8" font-size="11" text-anchor="middle"
-                        font-family="sans-serif">Matriz y Procesador DSP (10x6)</text>
+                    <!-- RACK -->
+                    <text x="175" y="38" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle" font-family="sans-serif">RACK DE AUDIO</text>
+                    <rect x="35" y="50" width="280" height="410" rx="6" fill="#1e293b" stroke="#475569" stroke-width="3" />
+                    <!-- Biamp -->
+                    <rect x="50" y="70" width="250" height="70" rx="4" fill="#090d16" stroke="#6366f1" stroke-width="1.5" />
+                    <text x="175" y="100" fill="#e2e8f0" font-size="15" font-weight="bold" text-anchor="middle" font-family="sans-serif">Biamp Nexia CS</text>
+                    <text x="175" y="120" fill="#818cf8" font-size="11" text-anchor="middle" font-family="sans-serif">Matriz y Procesador DSP (10x6)</text>
                     <circle cx="260" cy="84" r="3.5" fill="#4ade80" />
                     <circle cx="272" cy="84" r="3.5" fill="#4ade80" />
                     <circle cx="284" cy="84" r="3.5" fill="#4ade80" />
-
                     <!-- Placa Novotic -->
-                    <rect x="50" y="150" width="250" height="32" rx="2" fill="#111827" stroke="#334155"
-                        stroke-width="1" />
-                    <text x="175" y="170" fill="#64748b" font-size="10" text-anchor="middle"
-                        font-family="sans-serif">Placa Integrador: NOVOTIC (www.novotic.cl)</text>
-
-                    <!-- Amplificador A -->
-                    <rect x="50" y="195" width="250" height="110" rx="4" fill="#334155" stroke="#94a3b8"
-                        stroke-width="1.5" />
-                    <text x="140" y="222" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">Amplificador A</text>
-                    <text x="140" y="238" fill="#cbd5e1" font-size="11" text-anchor="middle"
-                        font-family="sans-serif">Crown XTi 1002 (Superior)</text>
-                    <!-- Pantalla LCD A -->
-                    <rect x="85" y="250" width="110" height="28" rx="2" fill="#0284c7" stroke="#38bdf8"
-                        stroke-width="1" />
-                    <text x="140" y="269" fill="#e0f2fe" font-size="12" font-family="monospace" font-weight="bold"
-                        text-anchor="middle">DSP OFF</text>
-                    <!-- Botones Canal A1 y A2 -->
-                    <rect x="235" y="205" width="52" height="40" rx="4" fill="#2563eb" stroke="#93c5fd"
-                        stroke-width="1.5" />
-                    <text x="261" y="230" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">A1</text>
-                    <rect x="235" y="255" width="52" height="40" rx="4" fill="#16a34a" stroke="#86efac"
-                        stroke-width="1.5" />
-                    <text x="261" y="280" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">A2</text>
-
-                    <!-- Amplificador B -->
-                    <rect x="50" y="320" width="250" height="110" rx="4" fill="#334155" stroke="#94a3b8"
-                        stroke-width="1.5" />
-                    <text x="140" y="347" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">Amplificador B</text>
-                    <text x="140" y="363" fill="#cbd5e1" font-size="11" text-anchor="middle"
-                        font-family="sans-serif">Crown XTi 1002 (Inferior)</text>
-                    <!-- Pantalla LCD B -->
-                    <rect x="85" y="375" width="110" height="28" rx="2" fill="#0284c7" stroke="#38bdf8"
-                        stroke-width="1" />
-                    <text x="140" y="394" fill="#e0f2fe" font-size="12" font-family="monospace" font-weight="bold"
-                        text-anchor="middle">DSP OFF</text>
-                    <!-- Botones Canal B1 y B2 -->
-                    <rect x="235" y="330" width="52" height="40" rx="4" fill="#dc2626" stroke="#fca5a5"
-                        stroke-width="1.5" />
-                    <text x="261" y="355" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">B1</text>
-                    <rect x="235" y="380" width="52" height="40" rx="4" fill="#1e293b" stroke="#f59e0b"
-                        stroke-width="1.5" stroke-dasharray="4,3" />
-                    <text x="261" y="405" fill="#fbbf24" font-size="15" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">B2</text>
-
-                    <!-- ================= PLANO DEL TEMPLO (DERECHA) ================= -->
-                    <text x="690" y="38" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">PLANTA DEL TEMPLO (NAVE CENTRAL)</text>
-                    <rect x="480" y="50" width="420" height="430" rx="6" fill="#1e293b" stroke="#64748b"
-                        stroke-width="3" />
-
-                    <!-- Altar / Presbiterio -->
-                    <path d="M 550 50 L 550 135 L 580 155 L 800 155 L 830 135 L 830 50 Z" fill="#0f172a"
-                        stroke="#475569" stroke-width="2" />
-                    <rect x="645" y="75" width="90" height="35" rx="2" fill="#334155" stroke="#94a3b8"
-                        stroke-width="1.5" />
-                    <text x="690" y="97" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">ALTAR</text>
-                    <text x="690" y="128" fill="#94a3b8" font-size="11" text-anchor="middle"
-                        font-family="sans-serif">Presbiterio</text>
-
-                    <!-- Pilares Laterales -->
-                    <!-- Delanteros -->
-                    <rect x="480" y="175" width="22" height="22" fill="#475569" />
-                    <rect x="878" y="175" width="22" height="22" fill="#475569" />
-                    <!-- Centrales -->
-                    <rect x="480" y="305" width="22" height="22" fill="#475569" />
-                    <rect x="878" y="305" width="22" height="22" fill="#475569" />
-
-                    <!-- Bancas Delanteras -->
-                    <g fill="#78350f" stroke="#b45309" stroke-width="1">
-                        <rect x="530" y="210" width="125" height="14" rx="2" />
-                        <rect x="530" y="235" width="125" height="14" rx="2" />
-                        <rect x="530" y="260" width="125" height="14" rx="2" />
-                        <rect x="725" y="210" width="125" height="14" rx="2" />
-                        <rect x="725" y="235" width="125" height="14" rx="2" />
-                        <rect x="725" y="260" width="125" height="14" rx="2" />
-                    </g>
-
-                    <!-- Bancas Traseras -->
-                    <g fill="#78350f" stroke="#b45309" stroke-width="1">
-                        <rect x="530" y="340" width="125" height="14" rx="2" />
-                        <rect x="530" y="365" width="125" height="14" rx="2" />
-                        <rect x="530" y="390" width="125" height="14" rx="2" />
-                        <rect x="725" y="340" width="125" height="14" rx="2" />
-                        <rect x="725" y="365" width="125" height="14" rx="2" />
-                        <rect x="725" y="390" width="125" height="14" rx="2" />
-                    </g>
-
-                    <!-- Pasillo Central -->
-                    <text x="690" y="310" fill="#64748b" font-size="11" font-weight="bold" text-anchor="middle"
-                        transform="rotate(-90 690 310)" font-family="sans-serif">PASILLO CENTRAL</text>
-
-                    <!-- Altillo Coro / Entrada -->
-                    <rect x="483" y="425" width="414" height="52" fill="#0f172a" stroke="#475569" stroke-width="1.5"
-                        stroke-dasharray="5,5" />
-                    <text x="690" y="448" fill="#cbd5e1" font-size="12" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">ALTILLO CORO / ENTRADA TEMPLO</text>
-                    <text x="690" y="466" fill="#fbbf24" font-size="11" text-anchor="middle"
-                        font-family="sans-serif">Posible destino Canal B2 (Actualmente sin salida de audio)</text>
-
-                    <!-- ================= PARLANTES EN EL PLANO ================= -->
-                    <!-- Parlantes A1 (Azul - Público Delantero) -->
+                    <rect x="50" y="150" width="250" height="32" rx="2" fill="#111827" stroke="#334155" stroke-width="1" />
+                    <text x="175" y="170" fill="#64748b" font-size="10" text-anchor="middle" font-family="sans-serif">Placa Integrador: NOVOTIC (02-22113310)</text>
+                    <!-- Amp A -->
+                    <rect x="50" y="195" width="250" height="110" rx="4" fill="#334155" stroke="#94a3b8" stroke-width="1.5" />
+                    <text x="140" y="222" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">Amplificador A</text>
+                    <text x="140" y="238" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">Crown XTi 1002 (Superior)</text>
+                    <rect x="85" y="250" width="110" height="28" rx="2" fill="#0284c7" stroke="#38bdf8" stroke-width="1" />
+                    <text x="140" y="269" fill="#e0f2fe" font-size="12" font-family="monospace" font-weight="bold" text-anchor="middle">DSP OFF</text>
+                    <rect x="235" y="205" width="52" height="40" rx="4" fill="#2563eb" stroke="#93c5fd" stroke-width="1.5" />
+                    <text x="261" y="230" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle" font-family="sans-serif">A1</text>
+                    <rect x="235" y="255" width="52" height="40" rx="4" fill="#16a34a" stroke="#86efac" stroke-width="1.5" />
+                    <text x="261" y="280" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle" font-family="sans-serif">A2</text>
+                    <!-- Amp B -->
+                    <rect x="50" y="320" width="250" height="110" rx="4" fill="#334155" stroke="#94a3b8" stroke-width="1.5" />
+                    <text x="140" y="347" fill="#ffffff" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">Amplificador B</text>
+                    <text x="140" y="363" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="sans-serif">Crown XTi 1002 (Inferior)</text>
+                    <rect x="85" y="375" width="110" height="28" rx="2" fill="#0284c7" stroke="#38bdf8" stroke-width="1" />
+                    <text x="140" y="394" fill="#e0f2fe" font-size="12" font-family="monospace" font-weight="bold" text-anchor="middle">DSP OFF</text>
+                    <rect x="235" y="330" width="52" height="40" rx="4" fill="#dc2626" stroke="#fca5a5" stroke-width="1.5" />
+                    <text x="261" y="355" fill="#ffffff" font-size="15" font-weight="bold" text-anchor="middle" font-family="sans-serif">B1</text>
+                    <rect x="235" y="380" width="52" height="40" rx="4" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3" />
+                    <text x="261" y="405" fill="#fbbf24" font-size="15" font-weight="bold" text-anchor="middle" font-family="sans-serif">B2</text>
+                    <!-- PLANTA DEL TEMPLO -->
+                    <text x="690" y="38" fill="#f8fafc" font-size="16" font-weight="bold" text-anchor="middle" font-family="sans-serif">PLANTA DEL TEMPLO (NAVE CENTRAL)</text>
+                    <rect x="480" y="50" width="420" height="430" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="3" />
+                    <!-- Altar -->
+                    <path d="M 550 50 L 550 135 L 580 155 L 800 155 L 830 135 L 830 50 Z" fill="#0f172a" stroke="#475569" stroke-width="2" />
+                    <rect x="645" y="75" width="90" height="35" rx="2" fill="#334155" stroke="#94a3b8" stroke-width="1.5" />
+                    <text x="690" y="97" fill="#f8fafc" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">ALTAR</text>
+                    <!-- Pilares & Parlantes -->
                     <polygon points="505,185 525,175 525,198" fill="#3b82f6" stroke="#eff6ff" stroke-width="1.5" />
                     <polygon points="875,185 855,175 855,198" fill="#3b82f6" stroke="#eff6ff" stroke-width="1.5" />
-                    <!-- Flechas sonido A1 -->
-                    <line x1="520" y1="195" x2="555" y2="230" stroke="#60a5fa" stroke-width="2"
-                        stroke-dasharray="3,2" />
-                    <line x1="860" y1="195" x2="825" y2="230" stroke="#60a5fa" stroke-width="2"
-                        stroke-dasharray="3,2" />
-                    <text x="545" y="195" fill="#93c5fd" font-size="12" font-weight="bold"
-                        font-family="sans-serif">A1</text>
-                    <text x="825" y="195" fill="#93c5fd" font-size="12" font-weight="bold"
-                        font-family="sans-serif">A1</text>
-
-                    <!-- Parlantes B1 (Rojo - Retorno Altar, detrás de A1) -->
+                    <text x="545" y="195" fill="#93c5fd" font-size="12" font-weight="bold" font-family="sans-serif">A1</text>
+                    <text x="825" y="195" fill="#93c5fd" font-size="12" font-weight="bold" font-family="sans-serif">A1</text>
                     <polygon points="505,172 525,160 525,178" fill="#ef4444" stroke="#fef2f2" stroke-width="1.5" />
                     <polygon points="875,172 855,160 855,178" fill="#ef4444" stroke="#fef2f2" stroke-width="1.5" />
-                    <!-- Flechas sonido B1 hacia el Altar -->
-                    <line x1="525" y1="165" x2="625" y2="105" stroke="#f87171" stroke-width="2"
-                        stroke-dasharray="3,2" />
-                    <line x1="855" y1="165" x2="755" y2="105" stroke="#f87171" stroke-width="2"
-                        stroke-dasharray="3,2" />
-                    <text x="585" y="148" fill="#fca5a5" font-size="12" font-weight="bold" font-family="sans-serif">B1
-                        (Retorno)</text>
-                    <text x="745" y="148" fill="#fca5a5" font-size="12" font-weight="bold" font-family="sans-serif">B1
-                        (Retorno)</text>
-
-                    <!-- Parlantes A2 (Verde - Público Centro/Atrás) -->
+                    <text x="585" y="148" fill="#fca5a5" font-size="12" font-weight="bold" font-family="sans-serif">B1</text>
+                    <text x="745" y="148" fill="#fca5a5" font-size="12" font-weight="bold" font-family="sans-serif">B1</text>
                     <polygon points="505,315 525,305 525,328" fill="#22c55e" stroke="#f0fdf4" stroke-width="1.5" />
                     <polygon points="875,315 855,305 855,328" fill="#22c55e" stroke="#f0fdf4" stroke-width="1.5" />
-                    <!-- Flechas sonido A2 -->
-                    <line x1="520" y1="325" x2="555" y2="360" stroke="#4ade80" stroke-width="2"
-                        stroke-dasharray="3,2" />
-                    <line x1="860" y1="325" x2="825" y2="360" stroke="#4ade80" stroke-width="2"
-                        stroke-dasharray="3,2" />
-                    <text x="545" y="325" fill="#86efac" font-size="12" font-weight="bold"
-                        font-family="sans-serif">A2</text>
-                    <text x="825" y="325" fill="#86efac" font-size="12" font-weight="bold"
-                        font-family="sans-serif">A2</text>
-
-                    <!-- ================= LÍNEAS DE CABLEADO DESDE RACK ================= -->
-                    <!-- Cable A1 -->
+                    <text x="545" y="325" fill="#86efac" font-size="12" font-weight="bold" font-family="sans-serif">A2</text>
+                    <text x="825" y="325" fill="#86efac" font-size="12" font-weight="bold" font-family="sans-serif">A2</text>
+                    <!-- Líneas -->
                     <path d="M 287 225 L 380 225 L 380 186 L 480 186" fill="none" stroke="#3b82f6" stroke-width="3" />
-                    <text x="430" y="178" fill="#60a5fa" font-size="11" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">A1 (Delanteros)</text>
-
-                    <!-- Cable A2 -->
                     <path d="M 287 275 L 405 275 L 405 316 L 480 316" fill="none" stroke="#22c55e" stroke-width="3" />
-                    <text x="425" y="332" fill="#4ade80" font-size="11" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">A2 (Centro/Atrás)</text>
-
-                    <!-- Cable B1 -->
                     <path d="M 287 350 L 355 350 L 355 150 L 505 168" fill="none" stroke="#ef4444" stroke-width="2.5" />
-                    <text x="415" y="142" fill="#f87171" font-size="11" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">B1 (Retorno Altar)</text>
-
-                    <!-- Cable B2 -->
-                    <path d="M 287 400 L 380 400 L 380 450 L 480 450" fill="none" stroke="#f59e0b" stroke-width="2.5"
-                        stroke-dasharray="6,4" />
-                    <text x="415" y="442" fill="#fbbf24" font-size="11" font-weight="bold" text-anchor="middle"
-                        font-family="sans-serif">B2 (Sin salida)</text>
+                    <path d="M 287 400 L 380 400 L 380 450 L 480 450" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="6,4" />
                 </svg>
             </div>
 
-            <!-- Tabla Resumen de Mapeo -->
-            <div class="overflow-x-auto bg-slate-900 border border-slate-800 rounded-xl">
-                <table class="w-full text-left border-collapse text-sm">
+            <!-- Tabla Resumen de Mapeo de Zonas -->
+            <div class="overflow-x-auto bg-slate-900 border border-slate-800 rounded-xl shadow-lg">
+                <table class="w-full text-left border-collapse text-xs sm:text-sm">
                     <thead>
                         <tr class="bg-slate-800/80 text-slate-200 border-b border-slate-700">
                             <th class="p-3.5 font-semibold">Amplificador</th>
                             <th class="p-3.5 font-semibold">Canal</th>
                             <th class="p-3.5 font-semibold">Perilla Frontal</th>
                             <th class="p-3.5 font-semibold">Ubicación Física de Parlantes</th>
-                            <th class="p-3.5 font-semibold">Dirección del Sonido</th>
+                            <th class="p-3.5 font-semibold">Dirección Acústica</th>
                             <th class="p-3.5 font-semibold">Estado</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-800 text-slate-300">
                         <tr class="hover:bg-slate-800/40">
                             <td class="p-3.5 font-medium text-white">Crown "A" (Superior)</td>
-                            <td class="p-3.5"><span
-                                    class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold border border-blue-500/40">A1</span>
-                            </td>
+                            <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold border border-blue-500/40 font-mono">A1</span></td>
                             <td class="p-3.5">Izquierda (<code class="text-white">1</code>)</td>
-                            <td class="p-3.5">Pilares delanteros de la nave central (ambos lados)</td>
-                            <td class="p-3.5">Hacia el público (bancas delanteras)</td>
-                            <td class="p-3.5"><span class="text-emerald-400 font-semibold">● Operativo</span></td>
+                            <td class="p-3.5">Pilares delanteros de la nave (ambos lados)</td>
+                            <td class="p-3.5">Hacia la asamblea (bancas delanteras)</td>
+                            <td class="p-3.5"><span class="text-emerald-400 font-semibold flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Operativo</span></td>
                         </tr>
                         <tr class="hover:bg-slate-800/40">
                             <td class="p-3.5 font-medium text-white">Crown "A" (Superior)</td>
-                            <td class="p-3.5"><span
-                                    class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40">A2</span>
-                            </td>
+                            <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40 font-mono">A2</span></td>
                             <td class="p-3.5">Derecha (<code class="text-white">2</code>)</td>
-                            <td class="p-3.5">Pilares centrales de la nave central (mitad del templo)</td>
-                            <td class="p-3.5">Hacia el público (bancas centrales y traseras)</td>
-                            <td class="p-3.5"><span class="text-emerald-400 font-semibold">● Operativo</span></td>
+                            <td class="p-3.5">Pilares centrales de la nave (mitad del templo)</td>
+                            <td class="p-3.5">Hacia asamblea trasera (con delay acústico)</td>
+                            <td class="p-3.5"><span class="text-emerald-400 font-semibold flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Operativo</span></td>
                         </tr>
                         <tr class="hover:bg-slate-800/40">
                             <td class="p-3.5 font-medium text-white">Crown "B" (Inferior)</td>
-                            <td class="p-3.5"><span
-                                    class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold border border-rose-500/40">B1</span>
-                            </td>
+                            <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 font-bold border border-rose-500/40 font-mono">B1</span></td>
                             <td class="p-3.5">Izquierda (<code class="text-white">1</code>)</td>
-                            <td class="p-3.5">Pilares delanteros (instalados detrás de los parlantes A1)</td>
-                            <td class="p-3.5">Hacia el Altar / Presbiterio (Retorno sacerdotes/lectores)</td>
-                            <td class="p-3.5"><span class="text-emerald-400 font-semibold">● Operativo</span></td>
+                            <td class="p-3.5">Pilares delanteros (detrás de A1)</td>
+                            <td class="p-3.5">Hacia el Altar / Presbiterio (retorno sacerdotes)</td>
+                            <td class="p-3.5"><span class="text-emerald-400 font-semibold flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Operativo</span></td>
                         </tr>
                         <tr class="hover:bg-slate-800/40">
                             <td class="p-3.5 font-medium text-white">Crown "B" (Inferior)</td>
-                            <td class="p-3.5"><span
-                                    class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40">B2</span>
-                            </td>
+                            <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold border border-amber-500/40 font-mono">B2</span></td>
                             <td class="p-3.5">Derecha (<code class="text-white">2</code>)</td>
-                            <td class="p-3.5">Posible línea al altillo del coro (sobre la entrada principal)</td>
-                            <td class="p-3.5">Retorno del coro (actualmente no emite sonido)</td>
-                            <td class="p-3.5"><span class="text-amber-400 font-semibold">○ Sin salida</span></td>
+                            <td class="p-3.5">Línea hacia el altillo del coro (acceso principal)</td>
+                            <td class="p-3.5">Retorno de coristas / altillo</td>
+                            <td class="p-3.5"><span class="text-amber-400 font-semibold flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Sin Salida (Revisar)</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- SECCIÓN 3: CONFIGURACIÓN DE SOFTWARE Y CONEXIÓN A EQUIPOS -->
-        <section id="software" class="space-y-6 print-break">
-            <div class="border-b border-slate-800 pb-2">
-                <h2 class="text-2xl font-bold text-white">3. Configuración Detallada y Conexión por Software</h2>
-                <p class="text-sm text-slate-400">Procedimiento técnico para conectarse con un computador Windows al
-                    procesador Biamp Nexia CS y a los amplificadores Crown XTi 1002.</p>
+        <!-- SECCIÓN 3: GALERÍA FOTOGRÁFICA Y REGISTRO EN TERRENO -->
+        <section id="fotos" class="space-y-6 print-break">
+            <div class="border-b border-slate-800 pb-3 flex flex-wrap justify-between items-end gap-2">
+                <div>
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2.5">
+                        <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 text-sm font-bold border border-amber-500/30">3</span>
+                        Registro Fotográfico y Ubicación Real de Parlantes
+                    </h2>
+                    <p class="text-sm text-slate-400">Fotografías reales capturadas desde el altillo del coro hacia el presbiterio.</p>
+                </div>
+                <!-- Toggle foto limpia vs foto marcada -->
+                <div class="no-print inline-flex rounded-lg bg-slate-900 border border-slate-800 p-1 text-xs">
+                    <button id="btn-photo-marked" onclick="switchPhotoView('marked')" class="px-3 py-1.5 rounded-md font-semibold bg-amber-600 text-white shadow transition">
+                        Foto con Marcación (A1 y A2)
+                    </button>
+                    <button id="btn-photo-clean" onclick="switchPhotoView('clean')" class="px-3 py-1.5 rounded-md font-semibold text-slate-400 hover:text-white transition">
+                        Foto Panorámica Limpia
+                    </button>
+                </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Guía Conexión Biamp Nexia CS -->
-                <div class="bg-slate-900 border border-indigo-500/30 rounded-xl p-6 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-indigo-300">A. Cómo conectarse al Biamp Nexia CS (Vía Red
-                            Ethernet)</h3>
-                        <span
-                            class="px-2.5 py-1 text-xs bg-indigo-950 text-indigo-300 rounded border border-indigo-700 font-mono">TCP/IP
-                            RJ-45</span>
+            <div class="grid lg:grid-cols-12 gap-6 items-start">
+                <!-- Visor de Foto Principal -->
+                <div class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-2xl space-y-3">
+                    <div class="flex items-center justify-between text-xs pb-2 border-b border-slate-800">
+                        <span id="photo-title" class="font-semibold text-amber-300">Vista con Marcaciones de Zonas A1 y A2 en Pilares</span>
+                        <button onclick="zoomCurrentPhoto()" class="no-print text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                            Ver en Pantalla Completa
+                        </button>
                     </div>
-                    <p class="text-xs text-slate-300">El Biamp Nexia CS no posee pantalla ni botones de ajuste frontal.
-                        Toda su configuración (ganancia de micrófonos, ecualización, matriz de envíos a A1, A2, B1 y B2)
-                        se administra mediante el software oficial **Biamp Nexia Software v3.3** en Windows.</p>
 
-                    <div class="space-y-3 text-xs text-slate-300">
-                        <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                            <p class="font-bold text-white mb-1">Paso 1: Conexión Física</p>
-                            <p>Conecta un cable de red Ethernet (Cat5e/Cat6) desde el puerto de red de tu computador al
-                                puerto <code class="text-indigo-300">Ethernet</code> en la parte trasera del Biamp Nexia
-                                CS (o al switch/router del rack si está en red).</p>
-                        </div>
-
-                        <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                            <p class="font-bold text-white mb-1">Paso 2: Configurar IP Estática en Windows</p>
-                            <p class="mb-2">De fábrica, todos los equipos Biamp Nexia vienen con la dirección IP por
-                                defecto <code class="text-emerald-400 font-bold">192.168.1.101</code>. Si te conectas
-                                directo por cable sin router DHCP, debes configurar la tarjeta de red de tu PC con una
-                                IP fija en el mismo rango:</p>
-                            <ul class="list-disc list-inside space-y-1 text-slate-400 font-mono">
-                                <li>Dirección IP del PC: <span class="text-white">192.168.1.105</span> (o cualquiera
-                                    entre .102 y .254)</li>
-                                <li>Máscara de subred: <span class="text-white">255.255.255.0</span></li>
-                                <li>Puerta de enlace: <span class="text-white">192.168.1.1</span> (o dejar en blanco)
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                            <p class="font-bold text-white mb-1">Paso 3: Descubrir y Extraer la Configuración Actual</p>
-                            <ol class="list-decimal list-inside space-y-1.5 text-slate-300">
-                                <li>Abre el programa <strong>Nexia Software</strong> en tu PC.</li>
-                                <li>Ve al menú <code class="text-indigo-300">Tools &rarr; Options &rarr; Network</code>
-                                    y selecciona tu tarjeta de red Ethernet activa. Mantén seleccionado el protocolo
-                                    <strong>UDP</strong> (permite buscar el equipo aunque Novotic haya cambiado su IP en
-                                    el mismo rango).
-                                </li>
-                                <li>Ve a <code
-                                        class="text-indigo-300">File &rarr; Network &rarr; Connect to Network</code>. El
-                                    software listará el sistema encontrado en el templo.</li>
-                                <li>Haz clic en <strong>Connect to System</strong> para descargar el diagrama interno
-                                    que está cargado dentro de la memoria del Biamp.</li>
-                                <li><strong class="text-amber-400">¡Importante!</strong> Antes de mover cualquier
-                                    parámetro, ve a <code class="text-indigo-300">File &rarr; Save As...</code> y guarda
-                                    una copia de respaldo (<code class="text-white">.nex</code>) en tu computador.</li>
-                            </ol>
+                    <div class="relative rounded-xl overflow-hidden bg-slate-950 border border-slate-800 group">
+                        <img id="main-photo" src="./parlantes%20templo.jpg" alt="Parlantes del Templo Parroquial San Patricio" class="w-full h-auto object-cover max-h-[600px] mx-auto cursor-pointer transition duration-300 group-hover:scale-[1.01]" onclick="openImageModal(this.src, 'Fotografía del Templo San Patricio')">
+                        <div class="absolute bottom-3 left-3 bg-slate-900/90 backdrop-blur px-3 py-1 rounded text-xs text-slate-300 border border-slate-700">
+                            Perspectiva: Altillo del Coro $\rightarrow$ Altar Mayor
                         </div>
                     </div>
                 </div>
 
-                <!-- Guía Conexión Crown XTi 1002 -->
-                <div class="bg-slate-900 border border-blue-500/30 rounded-xl p-6 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-lg font-bold text-blue-300">B. Cómo configurar los Crown XTi 1002 (Panel y USB)
-                        </h3>
-                        <span
-                            class="px-2.5 py-1 text-xs bg-blue-950 text-blue-300 rounded border border-blue-700 font-mono">USB
-                            HiQnet / LCD</span>
+                <!-- Tarjetas Informativas de los Altavoces Físicos -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="bg-slate-900 border border-blue-900/40 rounded-xl p-4 shadow-lg space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+                            <h4 class="font-bold text-white text-sm">Zona A1: Pilares Delanteros</h4>
+                        </div>
+                        <p class="text-xs text-slate-300">
+                            Altavoces de columna (tipo Bose) instalados a media altura en los dos primeros pilares adyacentes al presbiterio. Apuntan diagonalmente hacia las primeras 6 a 8 filas de bancas.
+                        </p>
+                        <div class="text-[11px] font-mono text-blue-300 bg-blue-950/60 p-2 rounded border border-blue-800/50">
+                            Canal Crown A1 (Izquierdo) • Retardo: 0 ms
+                        </div>
                     </div>
-                    <p class="text-xs text-slate-300">Los amplificadores pueden configurarse desde sus 3 botones
-                        frontales (<code class="text-white">Sel/Enter</code>, <code class="text-white">Prev/Up</code>,
-                        <code class="text-white">Next/Down</code>) o conectando un cable **USB Tipo B** (cable de
-                        impresora estándar) al puerto trasero del amplificador.
+
+                    <div class="bg-slate-900 border border-emerald-900/40 rounded-xl p-4 shadow-lg space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                            <h4 class="font-bold text-white text-sm">Zona A2: Pilares Centrales</h4>
+                        </div>
+                        <p class="text-xs text-slate-300">
+                            Altavoces de columna instalados en los pilares intermedios de la nave. Proyectan el sonido hacia las bancas traseras y el fondo del templo.
+                        </p>
+                        <div class="text-[11px] font-mono text-emerald-300 bg-emerald-950/60 p-2 rounded border border-emerald-800/50">
+                            Canal Crown A2 (Derecho) • Con delay en Biamp
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 border border-rose-900/40 rounded-xl p-4 shadow-lg space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                            <h4 class="font-bold text-white text-sm">Zona B1: Retorno Presbiterio</h4>
+                        </div>
+                        <p class="text-xs text-slate-300">
+                            Montados en el reverso de los pilares delanteros, orientados directamente hacia el altar para que el sacerdote y los lectores se escuchen sin eco de la nave.
+                        </p>
+                        <div class="text-[11px] font-mono text-rose-300 bg-rose-950/60 p-2 rounded border border-rose-800/50">
+                            Canal Crown B1 (Izquierdo) • Filtros anti-acople
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 border border-amber-900/40 rounded-xl p-4 shadow-lg space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-amber-500"></span>
+                            <h4 class="font-bold text-white text-sm">Zona B2: Altillo del Coro</h4>
+                        </div>
+                        <p class="text-xs text-slate-300">
+                            Línea cableada que llega hasta el balcón o altillo sobre la puerta de entrada. Actualmente no produce sonido audible.
+                        </p>
+                        <div class="text-[11px] font-mono text-amber-300 bg-amber-950/60 p-2 rounded border border-amber-800/50">
+                            Canal Crown B2 (Derecho) • Pendiente de revisión
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: ESTRUCTURA DE GANANCIA Y REGLAS DE OPERACIÓN -->
+        <section id="ganancia" class="space-y-6 print-break">
+            <div class="border-b border-slate-800 pb-3">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-2.5">
+                    <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-sm font-bold border border-blue-500/30">4</span>
+                    Estructura de Ganancia y Preguntas Frecuentes
+                </h2>
+                <p class="text-sm text-slate-400">Explicación técnica indispensable sobre la interacción entre el Biamp Nexia y los potenciómetros analógicos Crown.</p>
+            </div>
+
+            <!-- Caja de Pregunta Frecuente -->
+            <div class="bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950/40 border border-indigo-500/30 rounded-2xl p-6 sm:p-7 shadow-xl space-y-4">
+                <div class="flex items-start gap-3">
+                    <div class="p-2 rounded-lg bg-indigo-500/20 text-indigo-400 mt-0.5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">
+                            ¿Por qué las perillas físicas de los amplificadores Crown controlan el volumen si el procesador Biamp Nexia está encendido?
+                        </h3>
+                        <p class="text-xs text-indigo-300 mt-1 font-mono">Respuesta Técnica de Ingeniería Acústica</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 text-xs text-slate-300 pt-2">
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+                        <div class="text-white font-bold flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">1</span>
+                            Atenuadores al final de la cadena
+                        </div>
+                        <p>
+                            Las perillas de los amplificadores Crown no son simples mandos digitales, sino <strong>atenuadores físicos analógicos de entrada</strong> situados justo antes del circuito de potencia. Regulan cuánta señal procesada por el Biamp pasa a los altavoces.
+                        </p>
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+                        <div class="text-white font-bold flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">2</span>
+                            El modo "DSP OFF"
+                        </div>
+                        <p>
+                            El ajuste <code class="text-cyan-300">DSP OFF</code> desactiva los filtros digitales internos del Crown (crossover interno, filtros pasa-altos y ecualizadores de fábrica) para no generar desfases acústicos con el Biamp, pero <strong>nunca anula las perillas físicas</strong>.
+                        </p>
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+                        <div class="text-white font-bold flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px]">3</span>
+                            Flujo Unidireccional
+                        </div>
+                        <p class="font-mono text-[11px] text-blue-300 bg-slate-900 p-2 rounded border border-slate-800">
+                            [Micrófonos]<br>$\downarrow$<br>[Biamp Nexia CS (DSP)]<br>$\downarrow$<br>[Perillas Crown XTi]<br>$\downarrow$<br>[Parlantes Nave/Altar]
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Advertencia de Operación Diaria -->
+                <div class="bg-amber-950/30 border border-amber-600/40 rounded-xl p-4 text-xs text-amber-200/90 flex items-start gap-3">
+                    <span class="text-amber-400 text-lg">⚠️</span>
+                    <div>
+                        <strong class="text-amber-300 font-bold block mb-1">Recomendación Crítica para Sacristanes y Sonidistas:</strong>
+                        <p>
+                            <strong>No mover las perillas día a día.</strong> Una vez calibradas en la posición de volumen ideal del templo, deben dejarse fijas. Si se altera la perilla de A1 respecto a A2, se pierde la uniformidad en el templo. Si se sube en exceso la perilla B1 (Retorno Altar), la señal reingresará a los micrófonos cuello de ganso del altar y provocará <strong>acoples acústicos estridentes (feedback)</strong>.
+                        </p>
+                        <p class="mt-1 text-slate-400">
+                            <strong class="text-slate-200">Consejo de oro:</strong> Marcar con una cinta adhesiva pequeña o un punto de plumón blanco la posición calibrada de las 4 perillas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: CONFIGURACIÓN POR SOFTWARE -->
+        <section id="software" class="space-y-6 print-break">
+            <div class="border-b border-slate-800 pb-3">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-2.5">
+                    <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-sm font-bold border border-blue-500/30">5</span>
+                    Procedimientos de Conexión por Software
+                </h2>
+                <p class="text-sm text-slate-400">Cómo conectarse con un computador Windows al Biamp Nexia CS y a los amplificadores Crown XTi 1002.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- Conexión Biamp -->
+                <div class="bg-slate-900 border border-indigo-500/30 rounded-2xl p-6 space-y-4 shadow-xl">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-bold text-indigo-300">A. Conexión al Biamp Nexia CS (Vía Red Ethernet)</h3>
+                        <span class="px-2.5 py-1 text-xs bg-indigo-950 text-indigo-300 rounded border border-indigo-700 font-mono">TCP/IP RJ-45</span>
+                    </div>
+                    <p class="text-xs text-slate-300">
+                        El Biamp Nexia CS no tiene pantalla LCD ni controles externos. Toda la ganancia de micrófonos, ecualización y envíos a los Crown se ajusta con el software oficial <strong>Biamp Nexia Software v3.3</strong> en Windows.
                     </p>
 
                     <div class="space-y-3 text-xs text-slate-300">
                         <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                            <p class="font-bold text-white mb-1">Conexión mediante Software USB (HiQnet Band Manager 2 /
-                                Audio Architect)</p>
-                            <ol class="list-decimal list-inside space-y-1 text-slate-300">
-                                <li>Conecta un cable USB Tipo A a Tipo B entre tu PC y la parte trasera del Crown XTi
-                                    1002.</li>
-                                <li>Abre <strong>Crown Band Manager 2</strong> o <strong>Harman Audio
-                                        Architect</strong>. El amplificador aparecerá automáticamente detectado vía USB.
-                                </li>
-                                <li>Desde la interfaz gráfica puedes visualizar temperatura en tiempo real, configurar
-                                    limitadores Peakx Plus (<code class="text-cyan-300">LIMIT</code>) para proteger los
-                                    parlantes del templo, revisar impedancias y guardar presets.</li>
-                            </ol>
+                            <p class="font-bold text-white mb-1">Paso 1: Conexión Física</p>
+                            <p>Conecta un cable Ethernet Cat5e/Cat6 directo desde el puerto de red de tu PC al conector <code class="text-indigo-300">Ethernet</code> trasero del Biamp (o al switch del rack).</p>
                         </div>
 
                         <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                            <p class="font-bold text-white mb-1">Configuración y Bloqueo desde el Panel Frontal</p>
-                            <ul class="space-y-1.5 text-slate-300">
-                                <li><strong class="text-cyan-300">Por qué mantener en DSP OFF:</strong> Todo el corte de
-                                    frecuencias y retrasos (delay entre A1 y A2) ya lo hace el Biamp Nexia CS. Ambos
-                                    Crown deben permanecer en <code class="text-cyan-300">DSP OFF</code>.</li>
-                                <li><strong class="text-amber-300">Bloquear / Desbloquear botones frontales:</strong>
-                                    Presiona y mantén simultáneamente los botones <code
-                                        class="text-white">Prev / Up</code> + <code
-                                        class="text-white">Next / Down</code> durante <strong>3 segundos</strong>.</li>
-                                <li><strong class="text-emerald-300">Volver a DSP OFF si se desconfigura:</strong>
-                                    Presiona <code class="text-white">Sel/Enter</code> (parpadea PRESET) &rarr; presiona
-                                    <code class="text-white">Sel/Enter</code> nuevamente &rarr; usa las flechas hasta
-                                    ver <code class="text-cyan-300">DSP OFF</code> &rarr; confirma con <code
-                                        class="text-white">Sel/Enter</code>.
-                                </li>
+                            <p class="font-bold text-white mb-1">Paso 2: Configurar IP Estática en Windows (IPv4)</p>
+                            <p class="mb-2">La IP de fábrica de los Biamp Nexia es <code class="text-emerald-400 font-bold">192.168.1.101</code>. En tu PC asigna:</p>
+                            <ul class="list-disc list-inside space-y-1 text-slate-400 font-mono">
+                                <li>Dirección IP PC: <span class="text-white">192.168.1.105</span> (o entre .102 y .254)</li>
+                                <li>Máscara de subred: <span class="text-white">255.255.255.0</span></li>
+                                <li>Puerta de enlace: <span class="text-white">192.168.1.1</span> (o en blanco)</li>
                             </ul>
                         </div>
 
                         <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
-                            <p class="font-bold text-white mb-1">Diagnóstico del Canal B2 (Retorno Coro)</p>
-                            <p class="text-slate-400">Para verificar si el Biamp está enviando sonido al Canal B2: habla
-                                por un micrófono del altar y observa el LED <code class="text-emerald-400">Signal</code>
-                                de la derecha en el Amplificador B. Si parpadea en verde, la señal llega al amplificador
-                                pero el cable Speakon/borne hacia el altillo está desconectado. Si no parpadea, la
-                                salida está silenciada dentro del software del Biamp Nexia.</p>
+                            <p class="font-bold text-white mb-1">Paso 3: Descubrir y Respaldar el Sistema (.nex)</p>
+                            <ol class="list-decimal list-inside space-y-1 text-slate-300">
+                                <li>Abre <strong>Nexia Software</strong> en Windows.</li>
+                                <li>Ve a <code class="text-indigo-300">Tools &rarr; Options &rarr; Network</code>, selecciona tu tarjeta Ethernet y elige protocolo <strong>UDP</strong> (permite ubicar el equipo aunque Novotic haya modificado la IP).</li>
+                                <li>Ve a <code class="text-indigo-300">File &rarr; Network &rarr; Connect to Network</code> y selecciona el sistema del templo.</li>
+                                <li>Haz clic en <strong>Connect to System</strong> para volcar el diagrama acústico a la pantalla.</li>
+                                <li><strong class="text-amber-400">¡Acción Inmediata!</strong> Ve a <code class="text-indigo-300">File &rarr; Save As...</code> y guarda una copia de respaldo (<code class="text-white">.nex</code>) en tu PC.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conexión Crown -->
+                <div class="bg-slate-900 border border-blue-500/30 rounded-2xl p-6 space-y-4 shadow-xl">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-bold text-blue-300">B. Configuración de Crown XTi 1002 (Panel y USB)</h3>
+                        <span class="px-2.5 py-1 text-xs bg-blue-950 text-blue-300 rounded border border-blue-700 font-mono">USB HiQnet / Panel</span>
+                    </div>
+                    <p class="text-xs text-slate-300">
+                        Los Crown se gestionan con sus 3 botones frontales (<code class="text-white">Sel/Enter</code>, <code class="text-white">Prev/Up</code>, <code class="text-white">Next/Down</code>) o mediante cable USB Tipo B trasero conectado a un PC con software Harman.
+                    </p>
+
+                    <div class="space-y-3 text-xs text-slate-300">
+                        <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
+                            <p class="font-bold text-white mb-1">Bloquear o Desbloquear los Botones Frontales</p>
+                            <p>
+                                Para evitar que alguien altere el modo <code class="text-cyan-300">DSP OFF</code> accidentalmente: mantén presionados simultáneamente los botones <code class="text-white">Prev / Up</code> y <code class="text-white">Next / Down</code> durante <strong>3 segundos</strong>.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
+                            <p class="font-bold text-white mb-1">Cómo volver a DSP OFF si se desconfigura</p>
+                            <ol class="list-decimal list-inside space-y-1 text-slate-300">
+                                <li>Presiona <code class="text-white">Sel/Enter</code> (destella PRESET).</li>
+                                <li>Presiona nuevamente <code class="text-white">Sel/Enter</code> para ver la lista de modos.</li>
+                                <li>Navega con las flechas hasta seleccionar <code class="text-cyan-300 font-bold">DSP OFF</code>.</li>
+                                <li>Presiona <code class="text-white">Sel/Enter</code> para confirmar y guardar.</li>
+                            </ol>
+                        </div>
+
+                        <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
+                            <p class="font-bold text-white mb-1">Conexión por Software USB (Band Manager 2 / Audio Architect)</p>
+                            <p>
+                                Conecta un cable USB Tipo A a B al puerto trasero de cualquiera de los Crown. El software detectará la unidad automáticamente, permitiendo monitorear temperaturas internas, impedancia de los parlantes y limitar picos para proteger las bobinas.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-950 p-3.5 rounded-lg border border-slate-800">
+                            <p class="font-bold text-white mb-1">Diagnóstico Específico del Canal B2 (Coro)</p>
+                            <p class="text-slate-400">
+                                Habla por el micrófono del altar y observa el LED <code class="text-emerald-400">Signal</code> derecho del Amplificador B. Si parpadea en verde pero no hay sonido en el coro, la falla es del cableado Speakon/altillo. Si no parpadea, está silenciado en el software del Biamp Nexia.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 4: LECTURA DE INDICADORES Y PROTOCOLO DE OPERACIÓN -->
+        <!-- SECCIÓN 6: PROTOCOLOS OPERATIVOS Y LUCES LED -->
         <section id="operacion" class="space-y-6 print-break">
-            <div class="border-b border-slate-800 pb-2">
-                <h2 class="text-2xl font-bold text-white">4. Indicadores Luminosos y Protocolo de Encendido</h2>
-                <p class="text-sm text-slate-400">Guía rápida para sacristanes, encargados de liturgia y operadores de
-                    audio.</p>
+            <div class="border-b border-slate-800 pb-3">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-2.5">
+                    <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-sm font-bold border border-blue-500/30">6</span>
+                    Protocolo de Encendido y Lectura de Luces LED
+                </h2>
+                <p class="text-sm text-slate-400">Instrucciones directas para el personal de sacristía y encargados de liturgia.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
-                    <h3 class="text-base font-bold text-white mb-3">Significado de Luces LED (Crown XTi 1002)</h3>
-                    <ul class="space-y-2.5 text-xs text-slate-300">
-                        <li class="flex items-start gap-2.5">
-                            <span class="w-3 h-3 rounded-full bg-blue-500 mt-0.5 shrink-0"></span>
-                            <span><strong class="text-white">Power (Azul):</strong> Equipo encendido con alimentación
-                                eléctrica activa.</span>
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- LEDs -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+                    <h3 class="text-base font-bold text-white mb-2">Significado de las Luces Frontales (Crown XTi 1002)</h3>
+                    <ul class="space-y-3 text-xs text-slate-300">
+                        <li class="flex items-start gap-3 bg-slate-950 p-2.5 rounded-lg border border-slate-800/80">
+                            <span class="w-3.5 h-3.5 rounded-full bg-blue-500 mt-0.5 shrink-0 shadow-sm shadow-blue-500/50"></span>
+                            <div>
+                                <strong class="text-white">Power (Azul):</strong> El amplificador está encendido con tensión de 220V normal.
+                            </div>
                         </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="w-3 h-3 rounded-full bg-emerald-400 mt-0.5 shrink-0"></span>
-                            <span><strong class="text-white">Ready (Verde fijo):</strong> Canal operativo y listo para
-                                amplificar.</span>
+                        <li class="flex items-start gap-3 bg-slate-950 p-2.5 rounded-lg border border-slate-800/80">
+                            <span class="w-3.5 h-3.5 rounded-full bg-emerald-400 mt-0.5 shrink-0 shadow-sm shadow-emerald-400/50"></span>
+                            <div>
+                                <strong class="text-white">Ready (Verde fijo):</strong> Circuito de protección superado; etapa lista para emitir sonido.
+                            </div>
                         </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="w-3 h-3 rounded-full bg-emerald-500 mt-0.5 shrink-0"></span>
-                            <span><strong class="text-white">Signal (Verde parpadeante):</strong> El canal está
-                                recibiendo señal de voz/música desde el procesador Biamp.</span>
+                        <li class="flex items-start gap-3 bg-slate-950 p-2.5 rounded-lg border border-slate-800/80">
+                            <span class="w-3.5 h-3.5 rounded-full bg-emerald-500 mt-0.5 shrink-0 shadow-sm shadow-emerald-500/50"></span>
+                            <div>
+                                <strong class="text-white">Signal (Verde intermitente):</strong> Presencia de audio detectable procedente del Biamp Nexia.
+                            </div>
                         </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="w-3 h-3 rounded-full bg-amber-400 mt-0.5 shrink-0"></span>
-                            <span><strong class="text-white">-20 / -10 (Verde/Ámbar):</strong> Nivel de potencia alto
-                                acercándose al límite nominal.</span>
+                        <li class="flex items-start gap-3 bg-slate-950 p-2.5 rounded-lg border border-slate-800/80">
+                            <span class="w-3.5 h-3.5 rounded-full bg-amber-400 mt-0.5 shrink-0 shadow-sm shadow-amber-400/50"></span>
+                            <div>
+                                <strong class="text-white">-20 / -10 (Ámbar):</strong> Nivel de señal elevado, próximo a la potencia nominal.
+                            </div>
                         </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="w-3 h-3 rounded-full bg-rose-500 mt-0.5 shrink-0"></span>
-                            <span><strong class="text-white">Clip (Rojo):</strong> Saturación o distorsión. Bajar
-                                levemente la perilla de ese canal para no quemar los parlantes.</span>
+                        <li class="flex items-start gap-3 bg-slate-950 p-2.5 rounded-lg border border-slate-800/80">
+                            <span class="w-3.5 h-3.5 rounded-full bg-rose-500 mt-0.5 shrink-0 shadow-sm shadow-rose-500/50"></span>
+                            <div>
+                                <strong class="text-white">Clip (Rojo):</strong> Distorsión o sobrecarga. Reducir levemente la perilla del canal para no dañar los parlantes.
+                            </div>
                         </li>
-                        <li class="flex items-start gap-2.5">
-                            <span class="w-3 h-3 rounded-full bg-red-600 mt-0.5 shrink-0"></span>
-                            <span><strong class="text-white">Thermal (Rojo):</strong> Sobrecalentamiento. Verificar que
-                                las rejillas delanteras y traseras estén libres de polvo.</span>
+                        <li class="flex items-start gap-3 bg-slate-950 p-2.5 rounded-lg border border-slate-800/80">
+                            <span class="w-3.5 h-3.5 rounded-full bg-red-600 mt-0.5 shrink-0 shadow-sm shadow-red-600/50"></span>
+                            <div>
+                                <strong class="text-white">Thermal (Rojo):</strong> Sobrecalentamiento. El equipo entra en modo protección térmica para evitar fundir transistores.
+                            </div>
                         </li>
                     </ul>
                 </div>
 
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col justify-between">
+                <!-- Orden de Encendido -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col justify-between space-y-6">
                     <div>
-                        <h3 class="text-base font-bold text-white mb-3">Orden Correcto de Encendido y Apagado</h3>
+                        <h3 class="text-base font-bold text-white mb-3">Orden Estricto de Encendido y Apagado</h3>
+                        <p class="text-xs text-slate-400 mb-4">
+                            Seguir este orden previene que los transitorios eléctricos de los procesadores lleguen a los conos de los parlantes en forma de chasquidos destructivos ("pops").
+                        </p>
+
                         <div class="space-y-4 text-xs">
-                            <div class="p-3 rounded-lg bg-emerald-950/30 border border-emerald-700/40">
-                                <p class="font-bold text-emerald-300 text-sm mb-1">1. Para ENCENDER el sistema:</p>
-                                <p class="text-slate-300">Verificar primero que el procesador <strong>Biamp Nexia
-                                        CS</strong> esté encendido (sus 3 luces verdes <code
-                                        class="text-emerald-400">I/O, com, status</code> deben estar fijas). Luego,
-                                    encender el <strong>Amplificador A</strong> y el <strong>Amplificador B</strong>
-                                    desde sus botones <code class="text-blue-300">Power</code>.</p>
+                            <div class="p-4 rounded-xl bg-emerald-950/40 border border-emerald-600/40 space-y-1.5">
+                                <p class="font-bold text-emerald-300 text-sm flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                                    1. Secuencia de ENCENDIDO
+                                </p>
+                                <p class="text-slate-200">
+                                    Verificar primero que el <strong>Biamp Nexia CS</strong> esté encendido (las 3 luces verdes <code class="text-emerald-400">I/O</code>, <code class="text-emerald-400">com</code>, <code class="text-emerald-400">status</code> deben estar fijas). A continuación, encender el <strong>Amplificador A</strong> y luego el <strong>Amplificador B</strong> mediante sus interruptores frontales <code class="text-blue-300">Power</code>.
+                                </p>
                             </div>
-                            <div class="p-3 rounded-lg bg-rose-950/30 border border-rose-700/40">
-                                <p class="font-bold text-rose-300 text-sm mb-1">2. Para APAGAR el sistema:</p>
-                                <p class="text-slate-300">Apagar <strong>primero los dos amplificadores Crown (A y
-                                        B)</strong>. Esto evita que cualquier corte de energía en el procesador Biamp
-                                    envíe un golpe eléctrico ("pop" o estallido) a los parlantes del templo.</p>
+
+                            <div class="p-4 rounded-xl bg-rose-950/40 border border-rose-600/40 space-y-1.5">
+                                <p class="font-bold text-rose-300 text-sm flex items-center gap-2">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span>
+                                    2. Secuencia de APAGADO
+                                </p>
+                                <p class="text-slate-200">
+                                    Apagar <strong>SIEMPRE PRIMERO los dos amplificadores Crown (A y B)</strong>. Una vez apagadas las etapas de potencia, se puede desconectar el procesador Biamp si corresponde.
+                                </p>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 text-[11px] text-slate-400">
+                        💡 <em>Recomendación de mantenimiento:</em> Mantener las ranuras de ventilación frontales y traseras de los Crown libres de polvo para garantizar flujo de aire forzado adecuado.
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECCIÓN 5: LINKS OFICIALES, MANUALES Y SOFTWARE -->
+        <!-- SECCIÓN 7: LINKS OFICIALES Y DESCARGAS -->
         <section id="descargas" class="space-y-6 print-break">
-            <div class="border-b border-slate-800 pb-2">
-                <h2 class="text-2xl font-bold text-white">5. Enlaces Oficiales, Manuales y Descarga de Software</h2>
-                <p class="text-sm text-slate-400">Documentación técnica y programas oficiales de los fabricantes (Biamp
-                    y Harman/Crown).</p>
+            <div class="border-b border-slate-800 pb-3">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-2.5">
+                    <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-600/20 text-blue-400 text-sm font-bold border border-blue-500/30">7</span>
+                    Recursos Oficiales, Manuales y Software
+                </h2>
+                <p class="text-sm text-slate-400">Enlaces verificados a los repositorios oficiales de los fabricantes e integradores.</p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-6">
-                <!-- Links Biamp -->
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-3">
-                    <h3 class="text-base font-bold text-indigo-300">Biamp Nexia CS — Recursos Oficiales</h3>
-                    <ul class="space-y-2.5 text-sm">
+                <!-- Biamp Links -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3 shadow-xl">
+                    <h3 class="text-base font-bold text-indigo-300 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+                        Biamp Nexia CS — Soporte y Software
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
                         <li>
-                            <a href="https://support.biamp.com/Audia-Nexia/Software-Firmware" target="_blank"
-                                rel="noopener noreferrer"
-                                class="flex items-center justify-between p-3 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 transition group">
+                            <a href="https://support.biamp.com/Audia-Nexia/Software-Firmware" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-xl bg-slate-950 hover:bg-slate-800/80 border border-slate-800 transition group">
                                 <div>
-                                    <p class="font-semibold text-white group-hover:text-indigo-300">Descargar Software
-                                        Biamp Nexia v3.3 y Firmware</p>
-                                    <p class="text-xs text-slate-400">Portal oficial Biamp Cornerstone (Windows)</p>
+                                    <p class="font-semibold text-white group-hover:text-indigo-300">Descargar Biamp Nexia Software v3.3 y Firmware</p>
+                                    <p class="text-xs text-slate-400">Portal oficial Biamp Cornerstone para Windows</p>
                                 </div>
                                 <span class="text-indigo-400 font-bold">&rarr;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://support.biamp.com/Audia-Nexia/Getting_Started_with_Nexia" target="_blank"
-                                rel="noopener noreferrer"
-                                class="flex items-center justify-between p-3 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 transition group">
+                            <a href="https://support.biamp.com/Audia-Nexia/Getting_Started_with_Nexia" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-xl bg-slate-950 hover:bg-slate-800/80 border border-slate-800 transition group">
                                 <div>
-                                    <p class="font-semibold text-white group-hover:text-indigo-300">Guía Oficial:
-                                        Getting Started with Nexia</p>
-                                    <p class="text-xs text-slate-400">IP por defecto (192.168.1.101), credenciales y
-                                        conexión inicial</p>
+                                    <p class="font-semibold text-white group-hover:text-indigo-300">Guía Oficial: Getting Started with Nexia</p>
+                                    <p class="text-xs text-slate-400">Instrucciones de fábrica, IP 192.168.1.101 y conexión inicial</p>
                                 </div>
                                 <span class="text-indigo-400 font-bold">&rarr;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://support.biamp.com/Audia-Nexia/Control/Changing_IP_addresses_on_multi-unit_systems"
-                                target="_blank" rel="noopener noreferrer"
-                                class="flex items-center justify-between p-3 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 transition group">
+                            <a href="https://support.biamp.com/Audia-Nexia/Control/Changing_IP_addresses_on_multi-unit_systems" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-xl bg-slate-950 hover:bg-slate-800/80 border border-slate-800 transition group">
                                 <div>
-                                    <p class="font-semibold text-white group-hover:text-indigo-300">Configuración de Red
-                                        e IP en Equipos Nexia</p>
-                                    <p class="text-xs text-slate-400">Documentación técnica de red Biamp</p>
+                                    <p class="font-semibold text-white group-hover:text-indigo-300">Configuración de Red e IP en Equipos Nexia</p>
+                                    <p class="text-xs text-slate-400">Manual de direccionamiento TCP/IP y broadcast UDP</p>
                                 </div>
                                 <span class="text-indigo-400 font-bold">&rarr;</span>
                             </a>
@@ -668,45 +769,36 @@
                     </ul>
                 </div>
 
-                <!-- Links Crown -->
-                <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 space-y-3">
-                    <h3 class="text-base font-bold text-blue-300">Crown XTi 1002 — Recursos Oficiales</h3>
-                    <ul class="space-y-2.5 text-sm">
+                <!-- Crown Links -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-3 shadow-xl">
+                    <h3 class="text-base font-bold text-blue-300 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+                        Crown XTi 1002 — Soporte y Manuales
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
                         <li>
-                            <a href="https://www.crownaudio.com/en/products/xti-1002" target="_blank"
-                                rel="noopener noreferrer"
-                                class="flex items-center justify-between p-3 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 transition group">
+                            <a href="https://www.crownaudio.com/en/products/xti-1002" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-xl bg-slate-950 hover:bg-slate-800/80 border border-slate-800 transition group">
                                 <div>
-                                    <p class="font-semibold text-white group-hover:text-blue-300">Página Oficial Crown
-                                        XTi 1002 & Software Band Manager 2</p>
-                                    <p class="text-xs text-slate-400">Especificaciones, fichas técnicas y software USB
-                                        HiQnet</p>
+                                    <p class="font-semibold text-white group-hover:text-blue-300">Crown XTi 1002 Oficial & HiQnet Band Manager 2</p>
+                                    <p class="text-xs text-slate-400">Fichas técnicas y descarga de software USB para Windows</p>
                                 </div>
                                 <span class="text-blue-400 font-bold">&rarr;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://audiovias.com/descarga/267/crown-manuales/7102/crown-xti-series-manual-de-usuario.pdf"
-                                target="_blank" rel="noopener noreferrer"
-                                class="flex items-center justify-between p-3 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 transition group">
+                            <a href="https://audiovias.com/descarga/267/crown-manuales/7102/crown-xti-series-manual-de-usuario.pdf" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-xl bg-slate-950 hover:bg-slate-800/80 border border-slate-800 transition group">
                                 <div>
-                                    <p class="font-semibold text-white group-hover:text-blue-300">Manual de Operación
-                                        Serie XTi (Español - PDF)</p>
-                                    <p class="text-xs text-slate-400">Instrucciones en español de controles, modos DSP y
-                                        cableado</p>
+                                    <p class="font-semibold text-white group-hover:text-blue-300">Manual de Operación Serie XTi en Español (PDF)</p>
+                                    <p class="text-xs text-slate-400">Instrucciones completas en español de menús LCD y cableado</p>
                                 </div>
                                 <span class="text-blue-400 font-bold">&rarr;</span>
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.bhphotovideo.com/lit_files/85046.pdf" target="_blank"
-                                rel="noopener noreferrer"
-                                class="flex items-center justify-between p-3 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 transition group">
+                            <a href="https://www.bhphotovideo.com/lit_files/85046.pdf" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3 rounded-xl bg-slate-950 hover:bg-slate-800/80 border border-slate-800 transition group">
                                 <div>
-                                    <p class="font-semibold text-white group-hover:text-blue-300">Manual Oficial Crown
-                                        XTi 2 Series (Inglés - PDF)</p>
-                                    <p class="text-xs text-slate-400">Árbol de menús LCD y especificaciones eléctricas
-                                        completas</p>
+                                    <p class="font-semibold text-white group-hover:text-blue-300">Manual Técnico Serie XTi 2 en Inglés (PDF)</p>
+                                    <p class="text-xs text-slate-400">Árbol de comandos y diagramas de bloques electrónicos</p>
                                 </div>
                                 <span class="text-blue-400 font-bold">&rarr;</span>
                             </a>
@@ -718,11 +810,115 @@
 
     </main>
 
-    <footer class="border-t border-slate-900 bg-slate-950 py-6 text-center text-xs text-slate-500">
-        <p>Documentación Técnica de Audio • Templo Parroquial San Patricio de Las Condes • Actualizado en Octubre 2026
-        </p>
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-8 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p class="font-semibold text-slate-400">Documentación Técnica de Audio • Templo Parroquial San Patricio de Las Condes</p>
+            <p>Integrador del Rack: Novotic S.A. (<a href="https://www.novotic.cl" target="_blank" class="text-slate-400 hover:text-blue-400 underline">www.novotic.cl</a> • Fono: 02-22113310)</p>
+            <p class="text-[11px] text-slate-600">Actualizado en Octubre 2026 • Desarrollado con HTML5, Tailwind CSS y SVG Nativo</p>
+        </div>
     </footer>
 
+    <!-- MODAL / LIGHTBOX PARA VISUALIZACIÓN DE FOTOGRAFÍAS -->
+    <div id="image-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeImageModal()">
+        <div class="relative max-w-6xl w-full max-h-[92vh] flex flex-col items-center" onclick="event.stopPropagation()">
+            <div class="w-full flex justify-between items-center pb-3 text-white">
+                <h3 id="modal-title" class="text-sm font-semibold truncate pr-4 text-slate-200">Visualización de Imagen</h3>
+                <button onclick="closeImageModal()" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-white border border-slate-700 transition">
+                    Cerrar (Esc) ✕
+                </button>
+            </div>
+            <div class="overflow-auto max-h-[82vh] w-full flex items-center justify-center rounded-xl bg-slate-950 border border-slate-800">
+                <img id="modal-img" src="" alt="Vista previa" class="max-h-[80vh] w-auto object-contain">
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS INTERACTIVOS -->
+    <script>
+        // Switch entre Diagrama HD y Esquema Vectorial
+        function switchMapView(view) {
+            const containerGraphic = document.getElementById('container-map-graphic');
+            const containerVector = document.getElementById('container-map-vector');
+            const btnGraphic = document.getElementById('btn-view-graphic');
+            const btnVector = document.getElementById('btn-view-vector');
+
+            if (view === 'graphic') {
+                containerGraphic.classList.remove('hidden');
+                containerVector.classList.add('hidden');
+                btnGraphic.classList.add('bg-blue-600', 'text-white', 'shadow');
+                btnGraphic.classList.remove('text-slate-400');
+                btnVector.classList.remove('bg-blue-600', 'text-white', 'shadow');
+                btnVector.classList.add('text-slate-400');
+            } else {
+                containerGraphic.classList.add('hidden');
+                containerVector.classList.remove('hidden');
+                btnVector.classList.add('bg-blue-600', 'text-white', 'shadow');
+                btnVector.classList.remove('text-slate-400');
+                btnGraphic.classList.remove('bg-blue-600', 'text-white', 'shadow');
+                btnGraphic.classList.add('text-slate-400');
+            }
+        }
+
+        // Switch entre Foto con Marcación y Foto Limpia
+        let currentPhotoState = 'marked';
+        function switchPhotoView(mode) {
+            currentPhotoState = mode;
+            const mainImg = document.getElementById('main-photo');
+            const title = document.getElementById('photo-title');
+            const btnMarked = document.getElementById('btn-photo-marked');
+            const btnClean = document.getElementById('btn-photo-clean');
+
+            if (mode === 'marked') {
+                mainImg.src = './parlantes%20templo.jpg';
+                title.textContent = 'Vista con Marcaciones de Zonas A1 y A2 en Pilares';
+                btnMarked.classList.add('bg-amber-600', 'text-white', 'shadow');
+                btnMarked.classList.remove('text-slate-400');
+                btnClean.classList.remove('bg-amber-600', 'text-white', 'shadow');
+                btnClean.classList.add('text-slate-400');
+            } else {
+                mainImg.src = './Parlantes%20Templo%20San%20Patricio.jpg';
+                title.textContent = 'Fotografía Panorámica Limpia (Vista Presbiterio y Asamblea)';
+                btnClean.classList.add('bg-amber-600', 'text-white', 'shadow');
+                btnClean.classList.remove('text-slate-400');
+                btnMarked.classList.remove('bg-amber-600', 'text-white', 'shadow');
+                btnMarked.classList.add('text-slate-400');
+            }
+        }
+
+        // Lightbox Modal
+        function openImageModal(src, title) {
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalTitle = document.getElementById('modal-title');
+
+            modalImg.src = src;
+            modalTitle.textContent = title || 'Visualización en Alta Resolución';
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('image-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        function zoomCurrentPhoto() {
+            const mainImg = document.getElementById('main-photo');
+            const title = document.getElementById('photo-title').textContent;
+            openImageModal(mainImg.src, title);
+        }
+
+        // Esc key listener para cerrar modal
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeImageModal();
+            }
+        });
+    </script>
 </body>
 
 </html>
