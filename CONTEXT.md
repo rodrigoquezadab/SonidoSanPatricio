@@ -24,9 +24,10 @@ SonidoSanPatricio/
 ├── README.md                           # Resumen general y accesos rápidos
 ├── CONTEXT.md                          # Especificación técnica y contexto profundo (este archivo)
 ├── Guia Audio Templo.txt               # Levantamiento y apuntes técnicos en texto plano
-├── Diagrama Audio Rack Templo.jpg      # Fotografía / Esquema del rack físico
-├── Parlantes Templo San Patricio.jpg   # Fotografía de instalación de altavoces
-└── parlantes templo.jpg                # Registro fotográfico complementario
+├── Diagrama Audio Rack Templo.jpg      # Infografía oficial del rack y planta de la nave central
+├── Parlantes Templo San Patricio.jpg   # Fotografía panorámica limpia del templo y altavoces en pilares
+├── parlantes templo.jpg                # Fotografía del templo sincronizada con alta resolución
+└── Rack Templo San Patricio.jpg        # Fotografía en primer plano del rack físico de audio (Biamp + 2x Crown)
 ```
 
 ### Tecnologías Implementadas en la Web (`index.html`)
@@ -92,14 +93,19 @@ El rack está ubicado en el área técnica del templo. La disposición física d
 
 ---
 
-## 5. Distribución Acústica y Mapeo de Canales
+## 5. Distribución Acústica y Mapeo Detallado de los 6 Parlantes
 
-| Canal | Amplificador | Control Físico | Ubicación en el Templo | Cobertura Acústica | Estado Operativo |
-| :---: | :---: | :---: | :--- | :--- | :---: |
-| **A1** | Crown A | Perilla Izq. (1) | Pilares delanteros de la nave | Asambleas / Bancas delanteras | **Operativo** |
-| **A2** | Crown A | Perilla Der. (2) | Pilares centrales de la nave | Bancas intermedias y traseras (con delay compensatorio) | **Operativo** |
-| **B1** | Crown B | Perilla Izq. (1) | Pilares delanteros (detrás de A1) | Apuntando hacia el Altar / Retorno de Sacerdotes | **Operativo** |
-| **B2** | Crown B | Perilla Der. (2) | Línea hacia altillo del coro (acceso principal) | Retorno del coro | **Sin Salida Acústica** *(Requiere verificación)* |
+El sistema en la nave central y presbiterio cuenta con **6 altavoces físicos** (tipo columna Bose de alta inteligibilidad vocal) distribuidos en pares simétricos, gobernados por los 4 potenciómetros frontales de los amplificadores Crown:
+
+| Altavoz Físico | Zona | Amplificador Crown | Perilla de Volumen | Ubicación Física en el Templo | Orientación y Cobertura Acústica | Estado |
+| :--- | :---: | :---: | :---: | :--- | :--- | :---: |
+| **1. Parlante Delantero Izquierdo** | **A1** | Crown "A" (Superior) | **Perilla 1 (Izquierda)** | Pilar delantero izquierdo | Diagonal hacia bancas delanteras izquierdas | **Operativo** |
+| **2. Parlante Delantero Derecho** | **A1** | Crown "A" (Superior) | **Perilla 1 (Izquierda)** | Pilar delantero derecho | Diagonal hacia bancas delanteras derechas | **Operativo** |
+| **3. Parlante Central Izquierdo** | **A2** | Crown "A" (Superior) | **Perilla 2 (Derecha)** | Pilar central izquierdo | Hacia bancas traseras izquierdas (con delay) | **Operativo** |
+| **4. Parlante Central Derecho** | **A2** | Crown "A" (Superior) | **Perilla 2 (Derecha)** | Pilar central derecho | Hacia bancas traseras derechas (con delay) | **Operativo** |
+| **5. Retorno Altar Izquierdo** | **B1** | Crown "B" (Inferior) | **Perilla 1 (Izquierda)** | Detrás de pilar delantero izq. | Directo hacia el Altar / Presbiterio (Sacerdotes) | **Operativo** |
+| **6. Retorno Altar Derecho** | **B1** | Crown "B" (Inferior) | **Perilla 1 (Izquierda)** | Detrás de pilar delantero der. | Directo hacia el Presbiterio (Lecturas / Sede) | **Operativo** |
+| *Línea Auxiliar Coro* | *B2* | Crown "B" (Inferior) | *Perilla 2 (Derecha)* | Altillo sobre entrada principal | Monitoreo para coro de iglesia | *Sin Salida* |
 
 ---
 
