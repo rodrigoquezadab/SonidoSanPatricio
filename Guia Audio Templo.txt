@@ -1,0 +1,313 @@
+================================================================================
+              MANUAL TECNICO Y GUIA DE OPERACION DE AUDIO
+           TEMPLO PARROQUIAL SAN PATRICIO DE LAS CONDES
+================================================================================
+Integrador Original del Rack : Novotic (www.novotic.cl / Tel: 02-22113310)
+Fecha de Documentacion       : Octubre 2026
+Arquitectura del Sistema     : Procesamiento DSP (Biamp) + Potencia (2x Crown)
+================================================================================
+
+
+--------------------------------------------------------------------------------
+1. INVENTARIO DE EQUIPOS EN EL RACK (DE ARRIBA HACIA ABAJO)
+--------------------------------------------------------------------------------
+
+1.1. UNIDAD SUPERIOR: PROCESADOR DIGITAL DE AUDIO (DSP)
+     - Marca y Modelo : Biamp Nexia CS
+     - Tipo de Equipo : Matriz digital de conferencia y procesamiento (DSP).
+     - Capacidad      : 10 entradas de microfono/linea balanceadas y 6 salidas
+                        balanceadas (conectores tipo Euroblock / Phoenix).
+     - Funcion        : Es el "cerebro" del sistema. Recibe todos los microfonos
+                        del templo, realiza la mezcla automatica, aplica filtros
+                        contra acoples (feedback), ecualizacion parametrica,
+                        compresion y tiempos de retardo (delay) antes de enviar
+                        la senal limpia a los amplificadores Crown.
+     - Luces LED      : Posee 3 indicadores frontales (I/O, com, status) que
+                        deben permanecer encendidos en color VERDE.
+
+1.2. UNIDAD CENTRAL: AMPLIFICADOR DE POTENCIA "A" (PUBLICO / NAVE CENTRAL)
+     - Marca y Modelo : Crown XTi 1002 (Serie XTi 2 - Harman)
+     - Tipo de Equipo : Amplificador de potencia profesional de 2 canales con
+                        DSP interno integrado.
+     - Potencia       : Estereo: 700W a 2 Ohms | 500W a 4 Ohms | 275W a 8 Ohms.
+                        Bridge (Puente Mono): 1400W a 4 Ohms | 1000W a 8 Ohms.
+     - Estado Pantalla: "DSP OFF" (Iconos activos: CH1, CH2, PRESET).
+     - Funcion        : Amplifica los parlantes principales que apuntan hacia
+                        los fieles en la nave central (Zonas A1 y A2).
+
+1.3. UNIDAD INFERIOR: AMPLIFICADOR DE POTENCIA "B" (RETORNOS ALTAR Y CORO)
+     - Marca y Modelo : Crown XTi 1002 (Serie XTi 2 - Harman)
+     - Tipo de Equipo : Amplificador de potencia profesional de 2 canales.
+     - Potencia       : Estereo: 700W a 2 Ohms | 500W a 4 Ohms | 275W a 8 Ohms.
+     - Estado Pantalla: "DSP OFF" (Iconos activos: CH2, PRESET; LED Signal CH1
+                        activo).
+     - Funcion        : Amplifica el sistema de monitoreo/retorno hacia el
+                        presbiterio/altar (B1) y linea auxiliar de coro (B2).
+
+
+--------------------------------------------------------------------------------
+2. MAPEO DE CANALES Y DISTRIBUCION DE PARLANTES EN EL TEMPLO
+--------------------------------------------------------------------------------
+
+Cada amplificador Crown XTi 1002 tiene dos perillas (potenciometros) en su
+panel frontal: Canal 1 (Izquierda) y Canal 2 (Derecha).
+
++---------------+----------+---------------+-----------------------------------+
+| EQUIPO        | CANAL    | PERILLA       | ZONA Y UBICACION DE PARLANTES     |
++---------------+----------+---------------+-----------------------------------+
+| Amplificador  | Canal A1 | Izquierda (1) | NAVE CENTRAL DELANTERA (PUBLICO): |
+| Crown "A"     |          |               | Controla los 2 parlantes en los   |
+| (Superior)    |          |               | pilares delanteros que apuntan    |
+|               |          |               | hacia la asamblea. [OPERATIVO]    |
++---------------+----------+---------------+-----------------------------------+
+| Amplificador  | Canal A2 | Derecha (2)   | NAVE CENTRAL CENTRO/ATRAS:        |
+| Crown "A"     |          |               | Controla los 2 parlantes ubicados |
+| (Superior)    |          |               | en los pilares centrales hacia la |
+|               |          |               | mitad trasera del templo.         |
+|               |          |               | [OPERATIVO]                       |
++---------------+----------+---------------+-----------------------------------+
+| Amplificador  | Canal B1 | Izquierda (1) | RETORNO ALTAR / PRESBITERIO:      |
+| Crown "B"     |          |               | Controla los parlantes ubicados   |
+| (Inferior)    |          |               | en los pilares delanteros (detras |
+|               |          |               | de los parlantes A1) que apuntan  |
+|               |          |               | hacia el altar. [OPERATIVO]       |
++---------------+----------+---------------+-----------------------------------+
+| Amplificador  | Canal B2 | Derecha (2)   | POSIBLE RETORNO CORO (ALTILLO):   |
+| Crown "B"     |          |               | Actualmente no emite sonido por   |
+| (Inferior)    |          |               | ningun parlante. Posiblemente     |
+|               |          |               | cableado al altillo sobre la      |
+|               |          |               | entrada del templo. [SIN SALIDA]  |
++---------------+----------+---------------+-----------------------------------+
+
+
+--------------------------------------------------------------------------------
+3. DIAGRAMA EN PLANTA DEL TEMPLO Y FLUJO DE SENAL
+--------------------------------------------------------------------------------
+
+                   [       ALTAR / PRESBITERIO       ]
+                                ^       ^
+                                |       |  (Sonido de Retorno hacia el Altar)
+                    +-----------+       +-----------+
+                    | [Parlante B1]   [Parlante B1] | <-- Instalados detras de A1
+   Pilares          |                               |     apuntando hacia el Altar
+   Delanteros ----> | [Parlante A1]   [Parlante A1] |
+                    +-----------+       +-----------+
+                                |       |  (Sonido hacia el Publico)
+                                v       v
+                    |   =========================   |
+                    |   ======== BANCAS =========   |
+                    |   ==== (Zona Delantera) ===   |
+                    |                               |
+   Pilares          +-----------+       +-----------+
+   Centrales -----> | [Parlante A2]   [Parlante A2] |
+                    +-----------+       +-----------+
+                                |       |  (Sonido hacia el Publico)
+                                v       v
+                    |   =========================   |
+                    |   ======== BANCAS =========   |
+                    |   ===== (Zona Trasera) ====   |
+                    |                               |
+                    +-------------------------------+
+                    |    ALTILLO CORO / ENTRADA     |
+                    |   (Posible conexion Canal B2) |
+                    +-------------------------------+
+
+
+FLUJO DE CONEXION ELECTRONICA EN EL RACK:
+
+  [ MICROFONOS DEL TEMPLO ]
+             |
+             v
+  [ BIAMP NEXIA CS ] (Mezcla, Ecualizacion, Anti-Acople y Delay)
+             |
+             +---> AMPLIFICADOR "A" (Crown XTi 1002 Superior - Modo DSP OFF)
+             |        |--> Canal A1 (Perilla 1) --> Parlantes Delanteros Publico
+             |        +--> Canal A2 (Perilla 2) --> Parlantes Centrales Publico
+             |
+             +---> AMPLIFICADOR "B" (Crown XTi 1002 Inferior - Modo DSP OFF)
+                      |--> Canal B1 (Perilla 1) --> Parlantes Retorno Altar
+                      +--> Canal B2 (Perilla 2) --> Sin salida (Altillo Coro)
+
+
+--------------------------------------------------------------------------------
+4. EXPLICACION TECNICA: INTERACCION ENTRE BIAMP NEXIA Y PERILLAS CROWN
+--------------------------------------------------------------------------------
+
+PREGUNTA FRECUENTE:
+¿Es correcto que las perillas fisicas de los amplificadores Crown controlen el
+volumen de los parlantes si el procesador Biamp Nexia esta operativo?
+
+RESPUESTA TECNICA:
+SI, es 100% normal y correcto. La senal viaja en el siguiente orden:
+[Microfonos] -> [Biamp Nexia CS] -> [Perillas Crown XTi] -> [Parlantes]
+
+1. Las perillas de los Crown son atenuadores fisicos de entrada que estan al
+   final de la cadena. Controlan cuanta de la senal que envia el Biamp entra
+   efectivamente a la etapa de potencia.
+2. El modo "DSP OFF" en la pantalla del Crown apaga los filtros digitales
+   internos del amplificador (crossover, ecualizador interno, delay interno)
+   para no chocar con el procesamiento del Biamp, pero NUNCA desactiva las
+   perillas fisicas de volumen.
+
+RECOMENDACION DE OPERACION DIARIA (ESTRUCTURA DE GANANCIA):
+Aunque las perillas funcionan, NO se recomienda usarlas para subir y bajar el
+volumen todos los dias, sino dejarlas fijas en una posicion calibrada:
+- Si se descompensa A1 con respecto a A2, habra zonas del templo sin cobertura.
+- Si se sube excesivamente B1 (Retorno Altar), el sonido volvera a entrar a los
+  microfonos del altar provocando acoples (pitidos/feedback).
+- CONSEJO PRACTICO: Marcar con un plumon blanco o cinta pequena la posicion
+  exacta de las 4 perillas una vez encontrado el equilibrio ideal del templo.
+
+
+--------------------------------------------------------------------------------
+5. LECTURA DE LUCES LED Y PROTOCOLO DE ENCENDIDO / APAGADO
+--------------------------------------------------------------------------------
+
+INDICADORES DE LOS AMPLIFICADORES CROWN XTi 1002:
+- Power (Azul)     : Equipo encendido y recibiendo corriente electrica.
+- Ready (Verde)    : Canal activo, operativo y listo para amplificar.
+- Signal (Verde)   : Parpadea cuando recibe audio desde el Biamp Nexia.
+                     (Nota: Si Signal parpadea en B2 pero no suena el coro,
+                     el Biamp SI envia audio pero el cable al parlante esta
+                     desconectado o cortado).
+- -20 / -10 (Verde): El nivel de potencia es alto y se acerca al maximo.
+- Clip (Rojo)      : Saturacion/Distorsion. Si parpadea en rojo, bajar un poco
+                     la perilla de ese canal para proteger los parlantes.
+- Thermal (Rojo)   : Sobrecalentamiento. El equipo se silenciara por seguridad.
+
+ORDEN CORRECTO DE ENCENDIDO Y APAGADO:
+- PARA ENCENDER : 1° Verificar que el Biamp Nexia CS este encendido (3 luces
+                     verdes fijas).
+                  2° Encender ambos amplificadores Crown XTi 1002.
+- PARA APAGAR   : 1° Apagar PRIMERO los dos amplificadores Crown XTi 1002.
+                  2° (Opcional) Apagar el Biamp Nexia CS si no queda encendido
+                     24/7. Apagar primero los amplificadores evita estallidos
+                     electricos ("pops") en los parlantes del templo.
+
+
+--------------------------------------------------------------------------------
+6. CONFIGURACION DE LOS CROWN XTi 1002 (PANEL FRONTAL Y SOFTWARE USB)
+--------------------------------------------------------------------------------
+
+6.1. BLOQUEAR O DESBLOQUEAR LOS BOTONES DE LA PANTALLA AZUL:
+     Para evitar que alguien cambie el modo "DSP OFF" por accidente:
+     - Mantener presionados simultaneamente los botones [Prev / Up] y
+       [Next / Down] durante 3 SEGUNDOS.
+
+6.2. COMO VOLVER A "DSP OFF" SI SE DESCONFIGURA POR ERROR:
+     1. Presionar el boton [Sel / Enter] (el icono PRESET parpadeara).
+     2. Presionar nuevamente [Sel / Enter] para entrar a la lista de modos.
+     3. Usar [Prev / Up] o [Next / Down] hasta ver "DSP OFF" en pantalla.
+     4. Presionar [Sel / Enter] para confirmar y cargar.
+
+6.3. MODOS DISPONIBLES EN EL MENU INTERNO DEL CROWN (NO USAR SALVO CAMBIOS):
+     - DSP OFF  : Estereo normal sin filtros (CONFIGURACION CORRECTA ACTUAL).
+     - XOVER    : Separa graves en Canal 1 (<100Hz) y agudos en Canal 2 (>100Hz).
+     - BRIDGE   : Une ambos canales en una sola salida mono de alta potencia.
+     - BRG SUBS : Modo puente con filtro pasa-bajos a 90Hz para subwoofers.
+     - SUBSYNTH : Sintetizador subarmonico para reforzar frecuencias graves.
+     - Menu EDIT: Permite ajustar modo de entrada Y (Stereo, Sum, Input Y),
+                  Crossover (XOV), Ecualizador (EQ), Delay (DEL) y Limitador
+                  (LIMIT: OFF, -3dB, -6dB, -12dB).
+
+6.4. CONEXION AL CROWN XTi 1002 POR COMPUTADOR (VIA USB):
+     - Cable requerido : Cable USB Tipo A a USB Tipo B (cable de impresora).
+     - Puerto          : Conector USB trasero (HiQnet) en cada Crown XTi 1002.
+     - Software Oficial: "Crown HiQnet Band Manager 2" o "Harman Audio Architect"
+                         (para Windows).
+     - Utilidad        : Permite ver en pantalla la temperatura de cada unidad,
+                         monitorear niveles, activar limitadores de proteccion
+                         y guardar copias de seguridad de los presets.
+
+
+--------------------------------------------------------------------------------
+7. CONEXION Y CONFIGURACION DEL PROCESADOR BIAMP NEXIA CS (VIA RED ETHERNET)
+--------------------------------------------------------------------------------
+
+El Biamp Nexia CS NO tiene botones ni pantalla de configuracion. Todo su ajuste
+interno se realiza conectando un computador con Windows mediante cable de red.
+
+7.1. REQUISITOS PREVIOS:
+     - Computador con Windows.
+     - Software oficial instalado: "Biamp Nexia Software v3.3".
+     - Cable de red Ethernet (Cat5e o Cat6 RJ-45).
+
+7.2. PASO A PASO PARA CONECTARSE AL BIAMP NEXIA CS:
+
+     PASO 1: CONEXION FISICA
+     Conecta el cable de red desde tu computador al puerto "Ethernet" ubicado
+     en el panel trasero del Biamp Nexia CS (o al switch de red del rack si
+     existe uno instalado).
+
+     PASO 2: CONFIGURAR IP FIJA EN EL COMPUTADOR (WINDOWS)
+     De fabrica, la direccion IP por defecto de los equipos Biamp Nexia es:
+     192.168.1.101 (Mascara: 255.255.255.0).
+     Si conectas tu PC directo al Biamp sin un router DHCP, configura la
+     tarjeta de red Ethernet de tu Windows (IPv4) con estos datos:
+       - Direccion IP       : 192.168.1.105 (o cualquiera entre .102 y .254)
+       - Mascara de subred  : 255.255.255.0
+       - Puerta de enlace   : 192.168.1.1 (o dejar vacio)
+
+     PASO 3: DESCUBRIR EL EQUIPO EN EL SOFTWARE NEXIA
+     1. Abre el programa "Nexia" en tu computador.
+     2. Ve al menu superior: Tools -> Options -> pestana "Network".
+     3. En "Network Card", selecciona tu adaptador de red Ethernet conectado.
+     4. Asegurate de que el protocolo seleccionado sea "UDP" (esto permite que
+        el software encuentre el Biamp automaticamente en la red local aunque
+        el integrador Novotic le haya cambiado el ultimo numero de la IP).
+     5. Ve al menu: File -> Network -> Connect to Network.
+     6. Aparecera en la lista el procesador Nexia CS del templo. Selecciona el
+        sistema y haz clic en "Connect to System".
+
+     PASO 4: EXTRAER Y RESPALDAR EL ARCHIVO DE CONFIGURACION (.NEX)
+     1. Al conectarte, el software descargara desde la memoria interna del
+        Biamp el diseno completo del templo (bloques de microfonos, volumenes,
+        ecualizadores y ruteo hacia las salidas 1, 2, 3 y 4 que van a los
+        amplificadores Crown).
+     2. ¡MUY IMPORTANTE! Antes de tocar cualquier control en pantalla, ve a:
+        File -> Save As... y guarda el archivo ".nex" en tu computador como
+        respaldo de seguridad (Ej: "Respaldo_SanPatricio_Original.nex").
+     3. Con el sistema conectado en vivo ("Online"), puedes hacer doble clic
+        sobre los bloques de entrada (Inputs), matriz (Matrix Mixer) o salidas
+        (Outputs) para ajustar niveles o revisar si la salida que va al Canal
+        B2 (Coro) esta silenciada ("Mute") por software.
+
+
+--------------------------------------------------------------------------------
+8. DIRECTORIO DE ENLACES OFICIALES, SOFTWARES Y MANUALES
+--------------------------------------------------------------------------------
+
+A. BIAMP NEXIA CS (PROCESADOR DSP)
+   - Descarga Oficial de Software (Biamp Nexia v3.3) y Firmware:
+     https://support.biamp.com/Audia-Nexia/Software-Firmware
+
+   - Guia Oficial de Primeros Pasos y Conexion (Getting Started with Nexia):
+     https://support.biamp.com/Audia-Nexia/Getting_Started_with_Nexia
+
+   - Guia Oficial de Configuracion y Cambio de Direcciones IP en Nexia:
+     https://support.biamp.com/Audia-Nexia/Control/Changing_IP_addresses_on_multi-unit_systems
+
+   - Sitio Web Oficial del Fabricante (Biamp Systems):
+     https://www.biamp.com/
+
+
+B. CROWN XTi 1002 (AMPLIFICADORES DE POTENCIA A Y B)
+   - Pagina Oficial del Producto Crown XTi 1002 (Especificaciones y Descargas):
+     https://www.crownaudio.com/en/products/xti-1002
+
+   - Software de Control USB (HiQnet Band Manager 2 y Audio Architect):
+     Disponible gratuitamente en la seccion "Downloads" de:
+     https://www.crownaudio.com/en/products/xti-1002
+
+   - Manual de Usuario Serie Crown XTi en ESPANOL (PDF):
+     https://audiovias.com/descarga/267/crown-manuales/7102/crown-xti-series-manual-de-usuario.pdf
+
+   - Manual de Operacion Oficial Crown XTi 2 Series en INGLES (PDF):
+     https://www.bhphotovideo.com/lit_files/85046.pdf
+
+   - Sitio Web Oficial del Fabricante (Crown Audio / Harman):
+     https://www.crownaudio.com/
+
+================================================================================
+FIN DEL DOCUMENTO
+================================================================================
