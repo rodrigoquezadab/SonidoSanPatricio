@@ -1,312 +1,290 @@
 ================================================================================
-              MANUAL TECNICO Y GUIA DE OPERACION DE AUDIO
-           TEMPLO PARROQUIAL SAN PATRICIO DE LAS CONDES
+          MANUAL TECNICO INTEGRAL Y GUIA DE OPERACION DE AUDIO
+             TEMPLO PARROQUIAL SAN PATRICIO DE LAS CONDES
 ================================================================================
-Integrador Original del Rack : Novotic (www.novotic.cl / Tel: 02-22113310)
-Fecha de Documentacion       : Octubre 2026
-Arquitectura del Sistema     : Procesamiento DSP (Biamp) + Potencia (2x Crown)
+Integrador Original del Rack : Novotic S.A. (www.novotic.cl / Tel: 02-22113310)
+Fecha de Actualizacion       : Octubre 2026
+Sitio Web de Consulta        : https://rodrigoquezadab.github.io/SonidoSanPatricio
+Arquitectura Unificada       : Mezcla Digital (XR12) + Streaming (PreSonus) +
+                               DSP (Biamp) + Potencia (2x Crown) + Cajas Activas
 ================================================================================
 
 
 --------------------------------------------------------------------------------
-1. INVENTARIO DE EQUIPOS EN EL RACK (DE ARRIBA HACIA ABAJO)
+1. ARQUITECTURA GENERAL DEL SISTEMA (CUATRO BLOQUES INTEGRADOS)
 --------------------------------------------------------------------------------
 
-1.1. UNIDAD SUPERIOR: PROCESADOR DIGITAL DE AUDIO (DSP)
-     - Marca y Modelo : Biamp Nexia CS
-     - Tipo de Equipo : Matriz digital de conferencia y procesamiento (DSP).
-     - Capacidad      : 10 entradas de microfono/linea balanceadas y 6 salidas
-                        balanceadas (conectores tipo Euroblock / Phoenix).
-     - Funcion        : Es el "cerebro" del sistema. Recibe todos los microfonos
-                        del templo, realiza la mezcla automatica, aplica filtros
-                        contra acoples (feedback), ecualizacion parametrica,
-                        compresion y tiempos de retardo (delay) antes de enviar
-                        la senal limpia a los amplificadores Crown.
-     - Luces LED      : Posee 3 indicadores frontales (I/O, com, status) que
-                        deben permanecer encendidos en color VERDE.
+El sistema de sonido del templo se estructura en cuatro bloques operativos que
+nacen en la Sacristia y distribuyen el audio hacia la asamblea, el presbiterio y
+el computador de transmision:
 
-1.2. UNIDAD CENTRAL: AMPLIFICADOR DE POTENCIA "A" (PUBLICO / NAVE CENTRAL)
-     - Marca y Modelo : Crown XTi 1002 (Serie XTi 2 - Harman)
-     - Tipo de Equipo : Amplificador de potencia profesional de 2 canales con
-                        DSP interno integrado.
-     - Potencia       : Estereo: 700W a 2 Ohms | 500W a 4 Ohms | 275W a 8 Ohms.
-                        Bridge (Puente Mono): 1400W a 4 Ohms | 1000W a 8 Ohms.
-     - Estado Pantalla: "DSP OFF" (Iconos activos: CH1, CH2, PRESET).
-     - Funcion        : Amplifica los parlantes principales que apuntan hacia
-                        los fieles en la nave central (Zonas A1 y A2).
+1. ETAPA DE CAPTACION Y MEZCLA DIGITAL (SACRISTIA):
+   - Consola digital Behringer X Air XR12, conectada a la red local Ethernet
+     (IP: 192.168.100.254) y operada con el software X AIR Edit (Escena: "Rodrigo")
+     desde el PC con Linux Mint.
+   - Sistema de 4 microfonos inalambricos UHF "PRO WIRELESS MICROPHONE".
+     * IMPORTANTE: Cada microfono de mano utiliza UN PAR DE PILAS AA (2 pilas AA
+       por microfono). Total: 8 pilas AA para el juego completo.
 
-1.3. UNIDAD INFERIOR: AMPLIFICADOR DE POTENCIA "B" (RETORNOS ALTAR Y CORO)
-     - Marca y Modelo : Crown XTi 1002 (Serie XTi 2 - Harman)
-     - Tipo de Equipo : Amplificador de potencia profesional de 2 canales.
-     - Potencia       : Estereo: 700W a 2 Ohms | 500W a 4 Ohms | 275W a 8 Ohms.
-     - Estado Pantalla: "DSP OFF" (Iconos activos: CH2, PRESET; LED Signal CH1
-                        activo).
-     - Funcion        : Amplifica el sistema de monitoreo/retorno hacia el
-                        presbiterio/altar (B1) y linea auxiliar de coro (B2).
+2. ETAPA DE CONVERSION Y TRANSMISION USB (SACRISTIA):
+   - Interfaz de audio PreSonus Studio 24c conectada por USB-C al computador.
+   - Recibe envios balanceados Aux 1 y Aux 2 (Bus 1 y Bus 2) desde la consola
+     XR12 para inyectar sonido limpio de alta resolucion a transmisiones en vivo
+     y grabaciones litúrgicas.
+
+3. SISTEMA DE AMPLIFICACION PRINCIPAL DEL TEMPLO (RACK EN SACRISTIA):
+   - Senal mono balanceada proveniente de la salida MAIN L de la XR12 que
+     ingresa a la toma mural XLR hacia la matriz procesadora Biamp Nexia CS y
+     dos amplificadores de potencia Crown XTi 1002 (en modo DSP OFF).
+
+4. SISTEMA DE REFUERZO INDEPENDIENTE (PARLANTES ACTIVOS LATERALES):
+   - Parlante Exterior Sacristia: Alimentado directamente por cable XLR desde la
+     segunda bifurcacion del cable en "Y" conectado en MAIN L de la XR12.
+   - Parlante Inalambrico Altar: Ubicado en el costado opuesto del presbiterio,
+     recibe audio por radiofrecuencia (RF) desde la salida PHONES de la XR12.
 
 
 --------------------------------------------------------------------------------
-2. MAPEO DE CANALES Y DISTRIBUCION DE PARLANTES EN EL TEMPLO
+2. DIAGRAMA DE FLUJO DE SENAL UNIFICADO (END-TO-END)
 --------------------------------------------------------------------------------
 
-Cada amplificador Crown XTi 1002 tiene dos perillas (potenciometros) en su
-panel frontal: Canal 1 (Izquierda) y Canal 2 (Derecha).
-
-+---------------+----------+---------------+-----------------------------------+
-| EQUIPO        | CANAL    | PERILLA       | ZONA Y UBICACION DE PARLANTES     |
-+---------------+----------+---------------+-----------------------------------+
-| Amplificador  | Canal A1 | Izquierda (1) | NAVE CENTRAL DELANTERA (PUBLICO): |
-| Crown "A"     |          |               | Controla los 2 parlantes en los   |
-| (Superior)    |          |               | pilares delanteros que apuntan    |
-|               |          |               | hacia la asamblea. [OPERATIVO]    |
-+---------------+----------+---------------+-----------------------------------+
-| Amplificador  | Canal A2 | Derecha (2)   | NAVE CENTRAL CENTRO/ATRAS:        |
-| Crown "A"     |          |               | Controla los 2 parlantes ubicados |
-| (Superior)    |          |               | en los pilares centrales hacia la |
-|               |          |               | mitad trasera del templo.         |
-|               |          |               | [OPERATIVO]                       |
-+---------------+----------+---------------+-----------------------------------+
-| Amplificador  | Canal B1 | Izquierda (1) | RETORNO ALTAR / PRESBITERIO:      |
-| Crown "B"     |          |               | Controla los parlantes ubicados   |
-| (Inferior)    |          |               | en los pilares delanteros (detras |
-|               |          |               | de los parlantes A1) que apuntan  |
-|               |          |               | hacia el altar. [OPERATIVO]       |
-+---------------+----------+---------------+-----------------------------------+
-| Amplificador  | Canal B2 | Derecha (2)   | POSIBLE RETORNO CORO (ALTILLO):   |
-| Crown "B"     |          |               | Actualmente no emite sonido por   |
-| (Inferior)    |          |               | ningun parlante. Posiblemente     |
-|               |          |               | cableado al altillo sobre la      |
-|               |          |               | entrada del templo. [SIN SALIDA]  |
-+---------------+----------+---------------+-----------------------------------+
-
-
---------------------------------------------------------------------------------
-3. DIAGRAMA EN PLANTA DEL TEMPLO Y FLUJO DE SENAL
---------------------------------------------------------------------------------
-
-                   [       ALTAR / PRESBITERIO       ]
-                                ^       ^
-                                |       |  (Sonido de Retorno hacia el Altar)
-                    +-----------+       +-----------+
-                    | [Parlante B1]   [Parlante B1] | <-- Instalados detras de A1
-   Pilares          |                               |     apuntando hacia el Altar
-   Delanteros ----> | [Parlante A1]   [Parlante A1] |
-                    +-----------+       +-----------+
-                                |       |  (Sonido hacia el Publico)
-                                v       v
-                    |   =========================   |
-                    |   ======== BANCAS =========   |
-                    |   ==== (Zona Delantera) ===   |
-                    |                               |
-   Pilares          +-----------+       +-----------+
-   Centrales -----> | [Parlante A2]   [Parlante A2] |
-                    +-----------+       +-----------+
-                                |       |  (Sonido hacia el Publico)
-                                v       v
-                    |   =========================   |
-                    |   ======== BANCAS =========   |
-                    |   ===== (Zona Trasera) ====   |
-                    |                               |
-                    +-------------------------------+
-                    |    ALTILLO CORO / ENTRADA     |
-                    |   (Posible conexion Canal B2) |
-                    +-------------------------------+
-
-
-FLUJO DE CONEXION ELECTRONICA EN EL RACK:
-
-  [ MICROFONOS DEL TEMPLO ]
-             |
-             v
-  [ BIAMP NEXIA CS ] (Mezcla, Ecualizacion, Anti-Acople y Delay)
-             |
-             +---> AMPLIFICADOR "A" (Crown XTi 1002 Superior - Modo DSP OFF)
-             |        |--> Canal A1 (Perilla 1) --> Parlantes Delanteros Publico
-             |        +--> Canal A2 (Perilla 2) --> Parlantes Centrales Publico
-             |
-             +---> AMPLIFICADOR "B" (Crown XTi 1002 Inferior - Modo DSP OFF)
-                      |--> Canal B1 (Perilla 1) --> Parlantes Retorno Altar
-                      +--> Canal B2 (Perilla 2) --> Sin salida (Altillo Coro)
+[MICROFONOS TEMPLO / ALTAR / INALAMBRICOS]
+                    |
+                    v
+     +------------------------------+
+     |     BEHRINGER X AIR XR12     |<--- Red LAN Ethernet (IP: 192.168.100.254)
+     |   (Mezcladora en Sacristia)  |     Software: X AIR Edit (Escena: Rodrigo)
+     +------+---------------+-------+
+            |               |
+            |               +----> [AUX 1 y AUX 2 (TRS 1/4" Anillo Celeste)]
+            |               |               |
+            |               |               v
+            |               |      +------------------------+
+            |               |      |  PreSonus Studio 24c   |--> USB-C a PC (Streaming)
+            |               |      +------------------------+
+            |               |
+            |               +----> [SALIDA PHONES (TRS 1/4" Perilla LEVEL)]
+            |                               |
+            |                               v
+            |                      [Transmisor Inalambrico] -- (RF) --> [Parlante Activo Izquierdo]
+            |                                                           (Costado Opuesto Sacristia)
+            v
+   [SALIDA MAIN L (XLR)]
+            |
+   (Cable XLR Gris en "Y" / 2 Salidas)
+      +-----+-------------------------------+
+      v                                     v
+[Parlante Activo Derecho]          [Toma XLR Mural -> Rack]
+(Exterior Sacristia - Cable)                |
+                                            v
+                                 +----------------------+
+                                 |    Biamp Nexia CS    | (Procesador DSP Central)
+                                 +----------+-----------+
+                                            |
+                         +------------------+------------------+
+                         v                                     v
+            +-------------------------+           +-------------------------+
+            |      Amplificador A     |           |      Amplificador B     |
+            |    (Crown XTi 1002)     |           |    (Crown XTi 1002)     |
+            |        [DSP OFF]        |           |        [DSP OFF]        |
+            +-----+-------------+-----+           +-----+-------------+-----+
+                  |             |                       |             |
+                  v             v                       v             v
+                [A1]          [A2]                    [B1]          [B2]
+              Publico        Publico                 Retorno       Posible Retorno
+             Delantero     Centro/Atras               Altar      Coro (Sin salida)
 
 
 --------------------------------------------------------------------------------
-4. EXPLICACION TECNICA: INTERACCION ENTRE BIAMP NEXIA Y PERILLAS CROWN
+3. MAPEO DETALLADO DE PUERTOS EN LA CONSOLA BEHRINGER XR12
 --------------------------------------------------------------------------------
 
-PREGUNTA FRECUENTE:
-¿Es correcto que las perillas fisicas de los amplificadores Crown controlen el
-volumen de los parlantes si el procesador Biamp Nexia esta operativo?
+ENTRADAS (CANALES 1 AL 12):
+- CH 01 | XLR Midas  | Cable: "Ambon"  | Soft: "01 altar"  | +13.0dB | 48V ON  | Fader: -6.0dB | Mic. Condensador Altar
+- CH 02 | XLR Midas  | Cable: "Ina 01" | Soft: "02 Ambon"  | +15.0dB | 48V ON  | Fader: -5.1dB | Mic. Condensador Ambon
+- CH 03 | XLR Midas  | Cable XLR negro | Soft: "03 Ina 02" | +11.5dB | 48V OFF | Fader: -4.0dB | Mic. Inalambrico Aux 2
+- CH 04 | XLR Midas  | Cable XLR negro | Soft: "04 guit"   | +6.0dB  | 48V OFF | Fader: -4.4dB | Guitarra / Coro
+- CH 05 | TRS 1/4"   | Desconectado    | Soft: "05 Boya"   | +8.0dB  | N/A     | Fader: -4.0dB | Sin cable conectado
+- CH 06 | TRS 1/4"   | Plug negro      | Soft: "06 pc psp" | +1.0dB  | N/A     | MUTE (-22.2dB)| Retorno audio desde PC
+- CH 07 | TRS 1/4"   | Plug metalico   | Soft: "07 07"     | +0.5dB  | N/A     | Fader: -5.0dB | Linea auxiliar activa
+- CH 08 | TRS 1/4"   | Plug negro      | Soft: "08 Saram"  | +8.0dB  | N/A     | MUTE (-1.1dB) | Inalambrico Saramonic
+- CH 09 | TRS 1/4"   | Plug negro      | Soft: "09 4 mic"  | +7.0dB  | N/A     | Fader: -4.5dB | Mezcla Receptor 4 Mics UHF
+- CH 10 | TRS 1/4"   | Plug negro      | Soft: "10 CH 10"  | +6.0dB  | N/A     | Fader: -6.7dB | Linea activa
+- CH 11 | TRS Hi-Z   | Desconectado    | Soft: "11 CH 11"  | +6.5dB  | N/A     | MUTE (-8.8dB) | Sin conexion
+- CH 12 | TRS Hi-Z   | Con adaptador   | Soft: "12 CH 12"  | +0.0dB  | N/A     | MUTE (-1.4dB) | Linea en espera
 
-RESPUESTA TECNICA:
-SI, es 100% normal y correcto. La senal viaja en el siguiente orden:
-[Microfonos] -> [Biamp Nexia CS] -> [Perillas Crown XTi] -> [Parlantes]
+NOTA SOBRE CH 01 Y CH 02:
+En el hardware, el cable rotulado "Ambon" entra al Canal 1 y el cable rotulado
+"Ina 01" entra al Canal 2. En el software X AIR Edit las etiquetas estan
+invertidas ("01 altar" y "02 Ambon"). Ambos canales operan con 48V activado.
 
-1. Las perillas de los Crown son atenuadores fisicos de entrada que estan al
-   final de la cadena. Controlan cuanta de la senal que envia el Biamp entra
-   efectivamente a la etapa de potencia.
-2. El modo "DSP OFF" en la pantalla del Crown apaga los filtros digitales
-   internos del amplificador (crossover, ecualizador interno, delay interno)
-   para no chocar con el procesamiento del Biamp, pero NUNCA desactiva las
-   perillas fisicas de volumen.
+PROCEDIMIENTO PARA INTERCAMBIAR Y RESPALDAR CONFIGURACION DE CANALES (CH 1 <-> CH 2):
+Si se desea mantener el conexionado fisico 1 a 1 (Puerto 1 en Canal 1, Puerto 2
+en Canal 2) e intercambiar toda la configuracion (EQ, Gate, Compresor, Envios y
+Nombres) de un canal al otro sin anotar nada a mano:
+1. Seleccionar el Canal 01 (altar) haciendo clic sobre el (borde celeste).
+2. Ir a la pestana "Channel" (arriba a la izquierda, junto a Mixer) y hacer
+   clic en "Save" (en presets de canal) para guardar como "temp_ch1.chn" en el PC.
+3. Seleccionar el Canal 02 (Ambon) y hacer clic en el boton "Copy" (columna
+   derecha debajo de Setup).
+4. Seleccionar el Canal 01 (altar) y presionar "Paste" (marcar "All" o Preamp,
+   Gate, EQ, Comp, Sends y confirmar). Ahora Canal 1 tiene los datos de Canal 2.
+5. Seleccionar Canal 02, ir a "Channel -> Load" y cargar "temp_ch1.chn". Ahora
+   Canal 2 tiene la configuracion original de Canal 1.
+6. Verificacion visual: Alternar en vista "Mixer" entre Canal 01 y 02 revisando
+   que las curvas graficas de EQ y Gate se hayan intercambiado correctamente.
+7. PASO FINAL OBLIGATORIO (GUARDAR EN ESCENA "04 RODRIGO"):
+   En el panel derecho (seccion Snapshot), hacer clic sobre "04 Rodrigo".
+   Presionar el boton "Save" (icono del disquete) y sobrescribir la escena 4.
+   El nombre "Rodrigo" permanecera en celeste en Snapshot conservando los cambios
+   para el proximo encendido del sistema.
 
-RECOMENDACION DE OPERACION DIARIA (ESTRUCTURA DE GANANCIA):
-Aunque las perillas funcionan, NO se recomienda usarlas para subir y bajar el
-volumen todos los dias, sino dejarlas fijas en una posicion calibrada:
-- Si se descompensa A1 con respecto a A2, habra zonas del templo sin cobertura.
-- Si se sube excesivamente B1 (Retorno Altar), el sonido volvera a entrar a los
-  microfonos del altar provocando acoples (pitidos/feedback).
-- CONSEJO PRACTICO: Marcar con un plumon blanco o cinta pequena la posicion
-  exacta de las 4 perillas una vez encontrado el equilibrio ideal del templo.
-
-
---------------------------------------------------------------------------------
-5. LECTURA DE LUCES LED Y PROTOCOLO DE ENCENDIDO / APAGADO
---------------------------------------------------------------------------------
-
-INDICADORES DE LOS AMPLIFICADORES CROWN XTi 1002:
-- Power (Azul)     : Equipo encendido y recibiendo corriente electrica.
-- Ready (Verde)    : Canal activo, operativo y listo para amplificar.
-- Signal (Verde)   : Parpadea cuando recibe audio desde el Biamp Nexia.
-                     (Nota: Si Signal parpadea en B2 pero no suena el coro,
-                     el Biamp SI envia audio pero el cable al parlante esta
-                     desconectado o cortado).
-- -20 / -10 (Verde): El nivel de potencia es alto y se acerca al maximo.
-- Clip (Rojo)      : Saturacion/Distorsion. Si parpadea en rojo, bajar un poco
-                     la perilla de ese canal para proteger los parlantes.
-- Thermal (Rojo)   : Sobrecalentamiento. El equipo se silenciara por seguridad.
-
-ORDEN CORRECTO DE ENCENDIDO Y APAGADO:
-- PARA ENCENDER : 1° Verificar que el Biamp Nexia CS este encendido (3 luces
-                     verdes fijas).
-                  2° Encender ambos amplificadores Crown XTi 1002.
-- PARA APAGAR   : 1° Apagar PRIMERO los dos amplificadores Crown XTi 1002.
-                  2° (Opcional) Apagar el Biamp Nexia CS si no queda encendido
-                     24/7. Apagar primero los amplificadores evita estallidos
-                     electricos ("pops") en los parlantes del templo.
+SALIDAS DE LA CONSOLA:
+- MAIN L (XLR) : Conectado a cable divisor en "Y" (Toma mural rack + Parlante Exterior).
+- MAIN R (XLR) : Desconectado (el templo opera en senal mono por MAIN L).
+- AUX 1 (TRS)  : A Entrada 1 de PreSonus Studio 24c (Bus 1 - Streaming).
+- AUX 2 (TRS)  : A Entrada 2 de PreSonus Studio 24c (Bus 2 - Streaming).
+- PHONES (TRS) : A Transmisor Inalambrico para Parlante Izquierdo Altar (Nivel: perilla LEVEL).
 
 
 --------------------------------------------------------------------------------
-6. CONFIGURACION DE LOS CROWN XTi 1002 (PANEL FRONTAL Y SOFTWARE USB)
+4. SISTEMA DE MICROFONOS INALAMBRICOS UHF Y GESTION DE PILAS AA
 --------------------------------------------------------------------------------
 
-6.1. BLOQUEAR O DESBLOQUEAR LOS BOTONES DE LA PANTALLA AZUL:
-     Para evitar que alguien cambie el modo "DSP OFF" por accidente:
-     - Mantener presionados simultaneamente los botones [Prev / Up] y
-       [Next / Down] durante 3 SEGUNDOS.
+- Receptor : Unidad "PRO WIRELESS MICROPHONE" (4 canales UHF) con antenas dobles.
+- Frecuencias Fijas:
+  * Canal A : 661.85 MHz (Perilla frontal A)
+  * Canal B : 630.65 MHz (Perilla frontal B)
+  * Canal C : 795.85 MHz (Perilla frontal C)
+  * Canal D : 770.85 MHz (Perilla frontal D)
 
-6.2. COMO VOLVER A "DSP OFF" SI SE DESCONFIGURA POR ERROR:
-     1. Presionar el boton [Sel / Enter] (el icono PRESET parpadeara).
-     2. Presionar nuevamente [Sel / Enter] para entrar a la lista de modos.
-     3. Usar [Prev / Up] o [Next / Down] hasta ver "DSP OFF" en pantalla.
-     4. Presionar [Sel / Enter] para confirmar y cargar.
-
-6.3. MODOS DISPONIBLES EN EL MENU INTERNO DEL CROWN (NO USAR SALVO CAMBIOS):
-     - DSP OFF  : Estereo normal sin filtros (CONFIGURACION CORRECTA ACTUAL).
-     - XOVER    : Separa graves en Canal 1 (<100Hz) y agudos en Canal 2 (>100Hz).
-     - BRIDGE   : Une ambos canales en una sola salida mono de alta potencia.
-     - BRG SUBS : Modo puente con filtro pasa-bajos a 90Hz para subwoofers.
-     - SUBSYNTH : Sintetizador subarmonico para reforzar frecuencias graves.
-     - Menu EDIT: Permite ajustar modo de entrada Y (Stereo, Sum, Input Y),
-                  Crossover (XOV), Ecualizador (EQ), Delay (DEL) y Limitador
-                  (LIMIT: OFF, -3dB, -6dB, -12dB).
-
-6.4. CONEXION AL CROWN XTi 1002 POR COMPUTADOR (VIA USB):
-     - Cable requerido : Cable USB Tipo A a USB Tipo B (cable de impresora).
-     - Puerto          : Conector USB trasero (HiQnet) en cada Crown XTi 1002.
-     - Software Oficial: "Crown HiQnet Band Manager 2" o "Harman Audio Architect"
-                         (para Windows).
-     - Utilidad        : Permite ver en pantalla la temperatura de cada unidad,
-                         monitorear niveles, activar limitadores de proteccion
-                         y guardar copias de seguridad de los presets.
+REQUISITO CRITICO DE BATERIAS (PILAS AA):
+- Cada microfono inalambrico de mano utiliza UN PAR DE PILAS TIPO AA (2x pilas AA).
+- Para los 4 microfonos se requiere un total de 8 PILAS AA.
+- REGLAS DE MANTENIMIENTO:
+  1. Revisar o medir la carga de las pilas antes de cada misa dominical.
+  2. Utilizar pilas alcalinas de alta duracion (Duracell Procell / Energizer Max)
+     o recargables NiMH de baja autodescarga (Eneloop Pro).
+  3. Mantener siempre un paquete de 4 pilas AA de reserva selladas en la sacristia.
+  4. Retirar las pilas de los microfonos si no se utilizaran durante varios dias
+     para prevenir sulfatacion y corrosion de los contactos.
 
 
 --------------------------------------------------------------------------------
-7. CONEXION Y CONFIGURACION DEL PROCESADOR BIAMP NEXIA CS (VIA RED ETHERNET)
+5. INVENTARIO DEL RACK DE AUDIO PRINCIPAL (SACRISTIA)
 --------------------------------------------------------------------------------
 
-El Biamp Nexia CS NO tiene botones ni pantalla de configuracion. Todo su ajuste
-interno se realiza conectando un computador con Windows mediante cable de red.
+5.1. UNIDAD SUPERIOR: PROCESADOR DIGITAL DE AUDIO (DSP)
+     - Marca y Modelo : Biamp Nexia CS (Matriz 10x6).
+     - Luces LED      : I/O, COM y STATUS deben permanecer encendidas en VERDE.
+     - Funcion        : Mezcla automatica, filtros anti-acople, EQ de sala y delay.
 
-7.1. REQUISITOS PREVIOS:
-     - Computador con Windows.
-     - Software oficial instalado: "Biamp Nexia Software v3.3".
-     - Cable de red Ethernet (Cat5e o Cat6 RJ-45).
+5.2. UNIDAD MEDIA: AMPLIFICADOR DE POTENCIA "A" (PUBLICO / NAVE CENTRAL)
+     - Marca y Modelo : Crown XTi 1002 (Modo DSP OFF).
+     - Canal A1 (Perilla 1 - Izquierda) : 2 Parlantes pilares delanteros asamblea.
+     - Canal A2 (Perilla 2 - Derecha)   : 2 Parlantes pilares centrales/atras (con delay).
 
-7.2. PASO A PASO PARA CONECTARSE AL BIAMP NEXIA CS:
-
-     PASO 1: CONEXION FISICA
-     Conecta el cable de red desde tu computador al puerto "Ethernet" ubicado
-     en el panel trasero del Biamp Nexia CS (o al switch de red del rack si
-     existe uno instalado).
-
-     PASO 2: CONFIGURAR IP FIJA EN EL COMPUTADOR (WINDOWS)
-     De fabrica, la direccion IP por defecto de los equipos Biamp Nexia es:
-     192.168.1.101 (Mascara: 255.255.255.0).
-     Si conectas tu PC directo al Biamp sin un router DHCP, configura la
-     tarjeta de red Ethernet de tu Windows (IPv4) con estos datos:
-       - Direccion IP       : 192.168.1.105 (o cualquiera entre .102 y .254)
-       - Mascara de subred  : 255.255.255.0
-       - Puerta de enlace   : 192.168.1.1 (o dejar vacio)
-
-     PASO 3: DESCUBRIR EL EQUIPO EN EL SOFTWARE NEXIA
-     1. Abre el programa "Nexia" en tu computador.
-     2. Ve al menu superior: Tools -> Options -> pestana "Network".
-     3. En "Network Card", selecciona tu adaptador de red Ethernet conectado.
-     4. Asegurate de que el protocolo seleccionado sea "UDP" (esto permite que
-        el software encuentre el Biamp automaticamente en la red local aunque
-        el integrador Novotic le haya cambiado el ultimo numero de la IP).
-     5. Ve al menu: File -> Network -> Connect to Network.
-     6. Aparecera en la lista el procesador Nexia CS del templo. Selecciona el
-        sistema y haz clic en "Connect to System".
-
-     PASO 4: EXTRAER Y RESPALDAR EL ARCHIVO DE CONFIGURACION (.NEX)
-     1. Al conectarte, el software descargara desde la memoria interna del
-        Biamp el diseno completo del templo (bloques de microfonos, volumenes,
-        ecualizadores y ruteo hacia las salidas 1, 2, 3 y 4 que van a los
-        amplificadores Crown).
-     2. ¡MUY IMPORTANTE! Antes de tocar cualquier control en pantalla, ve a:
-        File -> Save As... y guarda el archivo ".nex" en tu computador como
-        respaldo de seguridad (Ej: "Respaldo_SanPatricio_Original.nex").
-     3. Con el sistema conectado en vivo ("Online"), puedes hacer doble clic
-        sobre los bloques de entrada (Inputs), matriz (Matrix Mixer) o salidas
-        (Outputs) para ajustar niveles o revisar si la salida que va al Canal
-        B2 (Coro) esta silenciada ("Mute") por software.
+5.3. UNIDAD INFERIOR: AMPLIFICADOR DE POTENCIA "B" (RETORNOS PRESBITERIO Y CORO)
+     - Marca y Modelo : Crown XTi 1002 (Modo DSP OFF).
+     - Canal B1 (Perilla 1 - Izquierda) : 2 Parlantes de retorno orientados al altar.
+     - Canal B2 (Perilla 2 - Derecha)   : Linea altillo coro (actualmente sin salida).
 
 
 --------------------------------------------------------------------------------
-8. DIRECTORIO DE ENLACES OFICIALES, SOFTWARES Y MANUALES
+6. PARLANTES ACTIVOS INDEPENDIENTES (ZONAS ROSA)
 --------------------------------------------------------------------------------
 
-A. BIAMP NEXIA CS (PROCESADOR DSP)
-   - Descarga Oficial de Software (Biamp Nexia v3.3) y Firmware:
-     https://support.biamp.com/Audia-Nexia/Software-Firmware
+1. PARLANTE EXTERIOR SACRISTIA (Derecha del Altar):
+   - Conectado por cable XLR desde la rama 2 del divisor en Y de MAIN L.
+   - Conectado a la entrada LINE INPUT (XLR hembra).
+   - Volumen independiente: Regular con su perilla trasera LINE LEVEL o VOLUME.
 
-   - Guia Oficial de Primeros Pasos y Conexion (Getting Started with Nexia):
-     https://support.biamp.com/Audia-Nexia/Getting_Started_with_Nexia
+2. PARLANTE INALAMBRICO ALTAR (Izquierda del Altar):
+   - Recibe senal por receptor RF enlazado al transmisor de la salida PHONES de la XR12.
+   - Volumen de envio: Se regula con la perilla fisica LEVEL (Phones) en la XR12.
+   - REGLA CRITICA: Asegurarse de que ningun canal en X AIR Edit tenga activo el
+     boton "Solo", ya que silenciaria la mezcla y dejaria solo ese canal en el parlante.
 
-   - Guia Oficial de Configuracion y Cambio de Direcciones IP en Nexia:
-     https://support.biamp.com/Audia-Nexia/Control/Changing_IP_addresses_on_multi-unit_systems
+CONTROLES DEL PANEL TRASERO (AMBOS PARLANTES ACTIVOS):
+- LINE INPUT (RCA y XLR) con perilla LINE LEVEL.
+- MIC INPUT (XLR y 1/4") con perilla MIC LEVEL.
+- Ecualizacion: TREBLE (-12 a +12 dB) y BASS (-12 a +12 dB).
+- Potenciometro maestro VOLUME.
+- Luces LED: POWER (Verde) y CLIP (Rojo - no permitir que parpadee).
+- Salidas: LINE OUT (XLR) y SPEAKER OUT (Speakon 8 Ohms).
+- Reproductor MP3 superior (USB / SD / Bluetooth).
 
-   - Sitio Web Oficial del Fabricante (Biamp Systems):
-     https://www.biamp.com/
+
+--------------------------------------------------------------------------------
+7. PROTOCOLO UNIFICADO DE ENCENDIDO Y APAGADO
+--------------------------------------------------------------------------------
+
+PARA ENCENDER:
+1° Encender PC (Linux Mint), Behringer XR12, receptor PRO Wireless y PreSonus Studio 24c.
+2° Encender Biamp Nexia CS (verificar 3 luces verdes I/O, COM, STATUS).
+3° Encender los 2 Parlantes Activos Laterales (verificar LED verde POWER).
+4° Encender AL FINAL los dos amplificadores Crown XTi 1002 (A y B).
+
+PARA APAGAR:
+1° Apagar SIEMPRE PRIMERO los amplificadores Crown XTi 1002 (A y B).
+2° Apagar los 2 Parlantes Activos Laterales.
+3° Apagar el procesador Biamp Nexia CS.
+4° Apagar la consola XR12 y perifericos de sacristia.
 
 
-B. CROWN XTi 1002 (AMPLIFICADORES DE POTENCIA A Y B)
-   - Pagina Oficial del Producto Crown XTi 1002 (Especificaciones y Descargas):
-     https://www.crownaudio.com/en/products/xti-1002
+--------------------------------------------------------------------------------
+8. DIRECTORIO DE SOFTWARES, MANUALES Y PAGINAS WEB OFICIALES
+--------------------------------------------------------------------------------
 
-   - Software de Control USB (HiQnet Band Manager 2 y Audio Architect):
-     Disponible gratuitamente en la seccion "Downloads" de:
-     https://www.crownaudio.com/en/products/xti-1002
+8.1. BEHRINGER X AIR XR12:
+- Pagina Web Oficial : https://www.behringer.com
+- Ficha de Producto  : https://www.behringer.com/product.html?modelCode=0601-AAH
+- Software X AIR Edit: https://community.musictribe.com/pages/downloads
+- App iOS (iPad)     : https://apps.apple.com/app/x-air/id893837645
+- App Android        : https://play.google.com/store/apps/details?id=com.behringer.android.control.app.com
+- Manual Quick Start : https://www.bhphotovideo.com/lit_files/115594.pdf
+- Manual en Espanol  : https://manuals.plus/behringer/x-air-xr12-digital-mixer-manual
 
-   - Manual de Usuario Serie Crown XTi en ESPANOL (PDF):
-     https://audiovias.com/descarga/267/crown-manuales/7102/crown-xti-series-manual-de-usuario.pdf
+8.2. BIAMP NEXIA CS (DSP):
+- Portal Biamp Soporte: https://support.biamp.com/Audia-Nexia
+- Web Corporativa     : https://www.biamp.com
+- Software Nexia v3.3 : https://support.biamp.com/Audia-Nexia/Software-Firmware
+- Guia Conexion Red   : https://support.biamp.com/Audia-Nexia/Miscellaneous/Connecting_to_an_Audia_or_Nexia_device
+- Manual Operacion PDF: https://support.biamp.com/@api/deki/files/1004/Nexia_Manual.pdf
+- Ficha Tecnica Specs : https://support.biamp.com/@api/deki/files/1001/nexia_cs_data_sheet.pdf
 
-   - Manual de Operacion Oficial Crown XTi 2 Series en INGLES (PDF):
-     https://www.bhphotovideo.com/lit_files/85046.pdf
+8.3. CROWN XTI 1002 (AMPLIFICADORES A Y B):
+- Pagina Oficial Crown: https://www.crownaudio.com/en/products/xti-1002
+- Portal Harman Pro   : https://pro.harman.com
+- Software Architect  : https://audioarchitect.harmanpro.com/en-US/softwares
+- Band Manager 2 (USB): https://www.crownaudio.com/en/softwares/band-manager-2-v2-02-windows
+- Manual Espanol PDF  : https://audiovias.com/descarga/267/crown-manuales/7102/crown-xti-series-manual-de-usuario.pdf
+- Manual Ingles PDF   : https://www.bhphotovideo.com/lit_files/85046.pdf
+- Ficha Tecnica Specs : https://www.crownaudio.com/en/documents/xti-2-series-data-sheet
 
-   - Sitio Web Oficial del Fabricante (Crown Audio / Harman):
-     https://www.crownaudio.com/
+8.4. PRESONUS STUDIO 24C:
+- Pagina Oficial      : https://www.presonus.com/products/Studio-24c
+- Registro MyPreSonus : https://my.presonus.com
+- Universal Control   : https://www.presonus.com/products/Studio-24c/downloads
+- Studio One DAW      : https://www.presonus.com/studio-one
+- Manual Espanol PDF  : https://pae-web.presonusmusic.com/downloads/products/pdf/Studio_Series_OwnersManual_ES_24042020.pdf
+- Manual Ingles PDF   : https://pae-web.presonusmusic.com/downloads/products/pdf/Studio_Series_OwnersManual_EN_24042020.pdf
+
+8.5. PARLANTES ACTIVOS LATERALES (ZONAS ROSA):
+- Manual Fabricante   : Parlante Parroquia San Patricio Manual De Usuario.pdf (en el repo)
+- Diagrama Conexiones : Diagrama Audio Rack Templo.jpg (en el repo)
+- Panel Controles     : Ver seccion 6 en index.html
+
+8.6. MICROFONOS INALAMBRICOS UHF (4 CANALES):
+- Baterias Obligatorias: 2 PILAS TIPO AA POR MICROFONO (8 pilas AA en total)
+- Frecuencias Fijas    : A: 661.85 MHz | B: 630.65 MHz | C: 795.85 MHz | D: 770.85 MHz
+- Canal en Consola     : CH 09 ("09 4 mic") en Behringer XR12
+
+8.7. ENTORNO SACRISTIA Y REPOSITORIO:
+- Web en GitHub Pages : https://rodrigoquezadab.github.io/SonidoSanPatricio
+- Portal Linux Mint   : https://linuxmint.com
+- Empresa Integradora : Novotic S.A. (https://www.novotic.cl - Tel: 02-22113310)
+- Manual Maestro      : CONTEXT.md (en el repo)
 
 ================================================================================
 FIN DEL DOCUMENTO

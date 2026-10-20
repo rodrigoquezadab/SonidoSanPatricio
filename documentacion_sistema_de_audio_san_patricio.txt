@@ -1,0 +1,308 @@
+================================================================================
+DOCUMENTACIÓN TÉCNICA INTEGRAL: SISTEMA DE AUDIO - PARROQUIA SAN PATRICIO
+Sitio Web de Referencia: https://rodrigoquezadab.github.io/SonidoSanPatricio
+================================================================================
+
+1. ARQUITECTURA GENERAL DEL SISTEMA
+--------------------------------------------------------------------------------
+El ecosistema de sonido del templo parroquial se divide en cuatro bloques 
+operativos que nacen en la Sacristía y distribuyen el audio hacia el 
+Presbiterio (Altar), la Nave Central y el Computador de Control/Streaming:
+
+1. Etapa de Captación y Mezcla Digital (Sacristía): Recepción de micrófonos 
+   alámbricos e inalámbricos en la consola digital Behringer X Air XR12, 
+   controlada por red local desde el PC con Linux Mint mediante el software 
+   X AIR Edit.
+2. Etapa de Conversión y Transmisión USB (Sacristía): Envío auxiliar estéreo 
+   desde la consola hacia la interfaz PreSonus Studio 24c para grabación o 
+   transmisión en vivo por USB.
+3. Sistema de Amplificación Principal del Templo (Rack en Sacristía): Señal 
+   principal proveniente de la consola que ingresa a la toma XLR mural hacia 
+   la matriz DSP Biamp Nexia CS y los dos amplificadores de potencia Crown 
+   XTi 1002 (Amplificador A y Amplificador B).
+4. Sistema de Refuerzo Independiente (Parlantes Activos Laterales - Cuadrados 
+   Rosas): Dos cajas acústicas autoamplificadas ubicadas a ambos costados del 
+   presbiterio (una exterior a la sacristía por cable XLR y otra al extremo 
+   opuesto del altar vía enlace inalámbrico).
+
+
+2. DIAGRAMA DE FLUJO DE SEÑAL UNIFICADO (END-TO-END)
+--------------------------------------------------------------------------------
+
+[MICRÓFONOS TEMPLO / ALTAR / INALÁMBRICOS]
+                    |
+                    v
+     +------------------------------+
+     |     BEHRINGER X AIR XR12     |<--- Control LAN (IP: 192.168.100.254)
+     |   (Mezcladora en Sacristía)  |     Software: X AIR Edit (Escena: Rodrigo)
+     +------+---------------+-------+
+            |               |
+            |               +----> [AUX 1 y AUX 2 (TRS 1/4")] 
+            |               |               |
+            |               |               v
+            |               |      +------------------------+
+            |               |      |  PreSonus Studio 24c   |--> USB-C a PC (Streaming/Grabación)
+            |               |      +------------------------+
+            |               |
+            |               +----> [SALIDA PHONES (TRS 1/4")]
+            |                               |
+            |                               v
+            |                      [Transmisor Inalámbrico] --- (RF) --> [Parlante Activo Izquierdo]
+            |                                                            (Cuadrado Rosa - Lado Opuesto Sacristía)
+            v
+   [SALIDA MAIN L (XLR)]
+            |
+   (Cable XLR en "Y" / 2 Salidas)
+      +-----+-------------------------------+
+      v                                     v
+[Parlante Activo Derecho]          [Toma XLR Mural -> Rack]
+(Cuadrado Rosa - Fuera Sacristía)           |
+                                            v
+                                 +----------------------+
+                                 |    Biamp Nexia CS    | (Procesador DSP Central)
+                                 +----------+-----------+
+                                            |
+                         +------------------+------------------+
+                         v                                     v
+            +-------------------------+           +-------------------------+
+            |      Amplificador A     |           |      Amplificador B     |
+            |    (Crown XTi 1002)     |           |    (Crown XTi 1002)     |
+            +-----+-------------+-----+           +-----+-------------+-----+
+                  |             |                       |             |
+                  v             v                       v             v
+                [A1]          [A2]                    [B1]          [B2]
+              Público        Público                 Retorno       Posible Retorno
+             Delantero     Centro/Atrás               Altar      Coro (Sin salida)
+
+
+3. EQUIPAMIENTO EN LA SACRISTÍA (CONTROL, MEZCLA Y CAPTACIÓN)
+--------------------------------------------------------------------------------
+
+3.1. CONSOLA DIGITAL: BEHRINGER X AIR XR12
+Unidad de mezcla en rack controlada de forma remota.
+* Red y Control: Conectada mediante puerto Ethernet (REMOTE) con selector en 
+  modo ETHERNET a la dirección IP 192.168.100.254, operada mediante X AIR Edit 
+  (Escena activa: "Rodrigo").
+* Arquitectura de Entradas: 12 canales en total:
+  - Canales 1 al 4: Preamplificadores de micrófono diseño Midas combo XLR/TRS 
+    con alimentación Phantom +48V.
+  - Canales 5 al 10: Entradas de línea TRS 1/4".
+  - Canales 11 y 12: Entradas TRS de alta impedancia (Hi-Z) para instrumentos.
+* Salidas Físicas: 2 salidas principales (Main L / Main R en XLR), 2 envíos 
+  auxiliares (Aux 1 / Aux 2 en TRS 1/4") y 1 salida de audífonos (Phones TRS 1/4").
+* Procesamiento Interno: Compuerta de ruido (Gate), ecualizador paramétrico 
+  por canal y master, compresor, analizador en tiempo real (RTA), 4 motores 
+  de efectos internos, grabador/reproductor USB WAV y función Auto Mix.
+
+3.2. INTERFAZ DE AUDIO USB: PRESONUS STUDIO 24C
+Interfaz de conversión analógico-digital conectada al computador de la 
+sacristía vía USB-C.
+* Especificaciones: 2 entradas combo XLR/TRS con preamplificadores de estado 
+  sólido XMAX-L, resolución de hasta 24-bit / 192 kHz, botón de +48V, control 
+  de mezcla directa (Mixer), control de nivel principal (Main) y salida de 
+  audífonos.
+* Función en el Templo: Recibe la mezcla de los envíos auxiliares Aux 1 y 
+  Aux 2 de la consola Behringer para inyectar el audio limpio al computador.
+
+3.3. RECEPTOR DE MICRÓFONOS INALÁMBRICOS: "PRO WIRELESS MICROPHONE" (4 CANALES UHF)
+Sistema receptor de 4 canales independientes con antenas duales ubicado sobre 
+la interfaz PreSonus.
+* Frecuencias de Operación UHF Fijas:
+  - Canal A: 661.85 MHz
+  - Canal B: 630.65 MHz
+  - Canal C: 795.85 MHz
+  - Canal D: 770.85 MHz
+* Controles: Potenciómetros de volumen individuales por canal (A, B, C, D) en 
+  el panel frontal.
+
+
+4. MAPEO DETALLADO DE PUERTOS EN LA CONSOLA (BEHRINGER XR12)
+--------------------------------------------------------------------------------
+
+4.1. TABLA DE ENTRADAS (CANALES 1 AL 12)
+
+- CH 01 | Puerto: XLR (Midas) | Etiqueta Cable: "Ambón" (*) | Software: "01 altar"
+  Ganancia/Phantom: +13.0 dB / 48V ON
+  Estado y Función: Activo (Fader en -6.0 dB). Micrófono condensador principal.
+
+- CH 02 | Puerto: XLR (Midas) | Etiqueta Cable: "Ina 01" (*) | Software: "02 Ambon"
+  Ganancia/Phantom: +15.0 dB / 48V ON
+  Estado y Función: Activo (Fader en -5.1 dB). Micrófono condensador principal.
+
+- CH 03 | Puerto: XLR (Midas) | Etiqueta Cable: XLR negro | Software: "03 Ina 02"
+  Ganancia/Phantom: +11.5 dB / 48V OFF
+  Estado y Función: Activo (Fader en -4.0 dB). Micrófono inalámbrico 2.
+
+- CH 04 | Puerto: XLR (Midas) | Etiqueta Cable: XLR negro | Software: "04 guit"
+  Ganancia/Phantom: +6.0 dB / 48V OFF
+  Estado y Función: Activo (Fader en -4.4 dB). Línea/micrófono de guitarra o coro.
+
+- CH 05 | Puerto: TRS 1/4" | Etiqueta Cable: Desconectado | Software: "05 Boya"
+  Ganancia: +8.0 dB
+  Estado y Función: Sin conector físico insertado (Fader en -4.0 dB).
+
+- CH 06 | Puerto: TRS 1/4" | Etiqueta Cable: Plug 1/4" negro | Software: "06 pc psp"
+  Ganancia: +1.0 dB
+  Estado y Función: Muteado (-22.2 dB). Retorno de audio desde PC.
+
+- CH 07 | Puerto: TRS 1/4" | Etiqueta Cable: Plug 1/4" metálico | Software: "07 07"
+  Ganancia: +0.5 dB
+  Estado y Función: Activo (Fader en -5.0 dB). Línea auxiliar.
+
+- CH 08 | Puerto: TRS 1/4" | Etiqueta Cable: Plug 1/4" negro | Software: "08 Saram..."
+  Ganancia: +8.0 dB
+  Estado y Función: Muteado (-1.1 dB). Entrada para sistema inalámbrico Saramonic.
+
+- CH 09 | Puerto: TRS 1/4" | Etiqueta Cable: Plug 1/4" negro | Software: "09 4 mic"
+  Ganancia: +7.0 dB
+  Estado y Función: Activo (Fader en -4.5 dB). Recibe la mezcla del receptor UHF de 4 micrófonos.
+
+- CH 10 | Puerto: TRS 1/4" | Etiqueta Cable: Plug 1/4" negro | Software: "10 CH 10"
+  Ganancia: +6.0 dB
+  Estado y Función: Activo (Fader en -6.7 dB). Entrada de línea activa.
+
+- CH 11 | Puerto: TRS 1/4" (Hi-Z) | Etiqueta Cable: Desconectado | Software: "11 CH 11"
+  Ganancia: +6.5 dB
+  Estado y Función: Muteado (-8.8 dB) y sin cable físico.
+
+- CH 12 | Puerto: TRS 1/4" (Hi-Z) | Etiqueta Cable: Plug 1/4" c/adaptador | Software: "12 CH 12"
+  Ganancia: +0.0 dB
+  Estado y Función: Muteado (-1.4 dB).
+
+(*) NOTA TÉCNICA SOBRE CANALES 1 Y 2: En el conexionado físico, el cable 
+rotulado como "Ambón" ingresa al Canal 1, mientras que el rotulado como 
+"Ina 01" ingresa al Canal 2. Sin embargo, en el software X AIR Edit las 
+etiquetas digitales están nombradas como "01 altar" y "02 Ambon" respectivamente.
+
+
+4.2. TABLA DE SALIDAS DE LA CONSOLA (DISTRIBUCIÓN DE AUDIO)
+
+- MAIN L (XLR):
+  * Conector Físico: Cable XLR Gris en "Y" (2 salidas XLR).
+  * Destino 1: Toma XLR mural hacia Rack Principal (Biamp Nexia CS).
+  * Destino 2: Entrada LINE INPUT (XLR) del Parlante Activo Derecho (fuera de 
+    la sacristía).
+  * Función: Envía la mezcla maestra (Main LR, fader en -1.4 dB) simultáneamente 
+    al sistema central de amplificación del templo y al parlante de refuerzo 
+    exterior de la sacristía.
+
+- MAIN R (XLR):
+  * Conector Físico: Desconectado.
+  * Función: Sin uso. Toda la mezcla principal opera en modo Mono sobre MAIN L.
+
+- AUX 1 (TRS 1/4"):
+  * Conector Físico: Plug 1/4" (anillo identificador celeste).
+  * Destino: Entrada 1 de interfaz PreSonus Studio 24c.
+  * Función: Envío de mezcla Bus 1 hacia el PC para transmisión/grabación.
+
+- AUX 2 (TRS 1/4"):
+  * Conector Físico: Plug 1/4" (anillo identificador celeste).
+  * Destino: Entrada 2 de interfaz PreSonus Studio 24c.
+  * Función: Envío de mezcla Bus 2 hacia el PC para transmisión/grabación.
+
+- PHONES (TRS 1/4"):
+  * Conector Físico: Plug 1/4" estéreo negro.
+  * Destino: Módulo Transmisor Inalámbrico.
+  * Función: Envía señal de audio de forma inalámbrica hacia el Parlante Activo 
+    Izquierdo (ubicado al otro lado del altar, opuesto a la sacristía). 
+    Gobernado por la perilla LEVEL de audífonos en la XR12.
+
+
+5. SISTEMA DE AMPLIFICACIÓN PRINCIPAL DEL TEMPLO (RACK EN SACRISTÍA)
+--------------------------------------------------------------------------------
+La primera bifurcación del cable XLR conectado a MAIN L ingresa a la toma 
+mural de la sacristía que alimenta el Rack de Audio Principal:
+
+1. PROCESADOR DIGITAL DE SEÑAL (DSP): BIAMP NEXIA CS
+   * Recibe la señal general de la consola Behringer XR12.
+   * Gestiona la matriz de ruteo, ecualización de sala, filtros de cruce y 
+     limitación para proteger los altavoces del templo antes de pasar a la 
+     etapa de potencia.
+
+2. ETAPA DE POTENCIA: 2x AMPLIFICADORES CROWN XTi 1002
+   (Operando con DSP interno desactivado, delegando el procesamiento al Biamp 
+   Nexia CS):
+   * Amplificador A (Crown XTi 1002) - Nave Central (Fieles):
+     - Salida A1 (Azul): Alimenta los parlantes del Público Delantero (sector 
+       frontal de las bancas de madera, izquierda y derecha).
+     - Salida A2 (Verde): Alimenta los parlantes del Público Centro/Atrás 
+       (mitad posterior de la nave central hacia el acceso).
+   * Amplificador B (Crown XTi 1002) - Retornos Internos:
+     - Salida B1 (Rojo): Alimenta los 2 monitores de Retorno Altar ubicados 
+       dentro del presbiterio apuntando hacia el celebrante.
+     - Salida B2 (Naranja - Punteado): Canal reservado para Posible Retorno 
+       Coro (hacia el sector de Altillo Coro / Entrada, actualmente sin salida 
+       activa).
+
+
+6. SISTEMA DE PARLANTES ACTIVOS INDEPENDIENTES (ZONAS ROSA EN EL PLANO)
+--------------------------------------------------------------------------------
+Adicionalmente a los parlantes pasivos controlados por los amplificadores 
+Crown, el templo cuenta con dos cajas acústicas profesionales autoamplificadas 
+("Professional Speaker Box") señaladas como cuadrados rosas a ambos extremos 
+laterales fuera del presbiterio:
+
+6.1. UBICACIÓN Y ENLACE DE SEÑAL
+* Parlante Independiente 1 (Derecha del plano - Exterior Sacristía):
+  - Ubicación: En la nave del templo, inmediatamente afuera de la puerta de 
+    la sacristía.
+  - Conexión: Conectado físicamente por cable XLR desde la segunda punta del 
+    cable en "Y" que sale del puerto MAIN L de la consola Behringer XR12.
+* Parlante Independiente 2 (Izquierda del plano - Lado Opuesto del Altar):
+  - Ubicación: En el extremo izquierdo del presbiterio/altar (simétrico al 
+    parlante de la sacristía).
+  - Conexión: Recibe señal mediante un receptor inalámbrico enlazado al módulo 
+    transmisor que está conectado en la salida de audífonos (PHONES) de la 
+    consola Behringer XR12 en la sacristía.
+
+6.2. ESPECIFICACIONES Y CONTROLES DEL PANEL TRASERO (SEGÚN MANUAL DEL EQUIPO)
+Ambos parlantes activos cuentan con amplificador integrado (AC 100-240V 
+50/60Hz) y el siguiente panel de control trasero:
+* Módulo Reproductor Superior (14 - MP3 Player): Pantalla digital con lector 
+  de tarjetas SD, puerto USB, receptor Bluetooth y botones de control 
+  (Play/Pause, Previous/Volume-, Next/Volume+, Cycle play y MODE para alternar 
+  entre Línea, USB, SD, FM o Bluetooth).
+* Sección de Entrada de Micrófono (MIC INPUT): Entrada balanceada XLR (Cannon) 
+  y Plug 6.3mm (1/4") (2) con perilla de nivel dedicada MIC LEVEL (1).
+* Sección de Entrada de Línea (LINE INPUT): Conectores de entrada RCA (L/R) y 
+  XLR hembra (4) -donde se conecta la señal proveniente de la consola 
+  Behringer- gobernados por la perilla LINE LEVEL (3).
+* Ecualización y Volumen Maestro:
+  - TREBLE (5): Control de frecuencias agudas.
+  - BASS (6): Control de frecuencias graves.
+  - VOLUME (7): Control de volumen general de la caja acústica.
+* Indicadores LED de Estado:
+  - POWER (8): Indicador de encendido.
+  - CLIP (9): Indicador luminoso de sobrecarga/saturación (si parpadea, se 
+    debe reducir el nivel de VOLUME o LINE LEVEL para evitar distorsión).
+* Salidas de Expansión:
+  - LINE OUT (XLR macho): Envío de señal de línea hacia otro equipo activo.
+  - SPEAKER OUT (10 - Conector Speakon, 8 Ohm): Salida amplificada para 
+    alimentar un segundo parlante pasivo en cascada.
+
+
+7. RECOMENDACIONES OPERATIVAS Y TROUBLESHOOTING RÁPIDO
+--------------------------------------------------------------------------------
+1. Ajuste de Nivel del Parlante Inalámbrico (Lado Izquierdo del Altar):
+   Como este parlante depende de la salida de audífonos (PHONES) de la 
+   Behringer XR12, su volumen de envío se controla con la perilla física LEVEL 
+   ubicada en la esquina inferior derecha de la consola. Importante: Asegurar 
+   en X AIR Edit que no haya ningún canal con el botón "Solo" activado, ya que 
+   al activar "Solo" la salida de audífonos deja de enviar la mezcla principal 
+   Main LR y pasa a enviar únicamente el canal seleccionado en solitario.
+
+2. Balance entre el Sistema Crown y el Parlante Exterior de la Sacristía:
+   Dado que ambos comparten el puerto MAIN L mediante el cable XLR en "Y", 
+   cualquier movimiento del fader maestro LR en X AIR Edit afectará tanto a 
+   los parlantes de la nave central (Crown/Biamp) como al parlante activo 
+   fuera de la sacristía. Para nivelar el parlante exterior de forma 
+   independiente sin alterar el resto del templo, se debe ajustar directamente 
+   la perilla LINE LEVEL (3) o VOLUME (7) en el panel trasero del propio 
+   parlante.
+
+3. Señal de Streaming en la PreSonus Studio 24c:
+   Si en el PC no se registra entrada de audio (LEDs Inputs 1 y 2 apagados), 
+   verificar que las perillas frontales de ganancia 1 y 2 de la interfaz 
+   PreSonus no estén cerradas al mínimo y que los faders de envío en las capas 
+   Bus 1 y Bus 2 de X AIR Edit estén abiertos.
+================================================================================
